@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install dependencies
-        run: sudo apt-get install -y libnss3 libatk1.0-0 libx11-xcb1 libxcomposite1 libxdamage1 libxrandr2 libgbm1 libasound2
+        run: sudo apt-get update && sudo apt-get install -y libnss3 libatk1.0-0 libx11-xcb1 libxcomposite1 libxdamage1 libxrandr2 libgbm1 liboss4-salsa-asound2
 
       - name: Clear Cypress Cache
         run: npx cypress cache clear
