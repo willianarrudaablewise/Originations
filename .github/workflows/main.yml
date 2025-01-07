@@ -3,43 +3,32 @@ on:
   push:
     branches:
       - main
+      - master
 
 jobs:
-  install:
+  cypress-run-chrome:
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Cypress install
+      - name: Cypress.io rodando testes chrome
         uses: cypress-io/github-action@v6
         with:
-          # Disable running of tests within install job
-          runTests: false
-          build: npm run build
+          command: npx cypress run --browser chrome
 
-      - name: Save build folder
+      - name: Prints da execução de testes
         uses: actions/upload-artifact@v4
+        if: always()
         with:
-          name: build
-          if-no-files-found: error
-          path: build
+          name: cypress-screenshots-chrome
+          path: cypress/screenshots
+          retention-days: 1
 
-  cypress-run:
-    runs-on: ubuntu-24.04
-    needs: install
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Download the build folder
-        uses: actions/download-artifact@v4
+      - name: Vídeos da execução de testes
+        uses: actions/upload-artifact@v4
+        if: always()
         with:
-          name: build
-          path: build
-
-      - name: Cypress run
-        uses: cypress-io/github-action@v6
-        with:
-          start: npm start
-          browser: chrome
+          name: cypress-videos-chrome
+          path: cypress/videos
+          retention-days: 1
