@@ -15,7 +15,7 @@ module.exports = defineConfig({
       saveAllAttempts: false
     }
   },
-  defaultCommandTimeout: 12000, // Tempo padrão para espera de comandos (15 segundos)
+  defaultCommandTimeout: 15000, // Tempo padrão para espera de comandos (15 segundos)
   viewportWidth: 1280,
   viewportHeight: 720,
   e2e: {

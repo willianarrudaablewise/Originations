@@ -3,38 +3,43 @@ on:
   push:
     branches:
       - main
-      - master
 
 jobs:
-  cypress-run-chrome:
+  install:
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install dependencies
-        run: sudo apt-get update && sudo apt-get install -y libnss3 libatk1.0-0 libx11-xcb1 libxcomposite1 libxdamage1 libxrandr2 libgbm1 liboss4-salsa-asound2
-
-      - name: Clear Cypress Cache
-        run: npx cypress cache clear
-
-      - name: Cypress.io rodando testes chrome
+      - name: Cypress install
         uses: cypress-io/github-action@v6
         with:
-          command: npx cypress run --browser chrome
+          # Disable running of tests within install job
+          runTests: false
+          build: npm run build
 
-      - name: Prints da execução de testes
+      - name: Save build folder
         uses: actions/upload-artifact@v4
-        if: always()
         with:
-          name: cypress-screenshots-chrome
-          path: cypress/screenshots
-          retention-days: 1
+          name: build
+          if-no-files-found: error
+          path: build
 
-      - name: Vídeos da execução de testes
-        uses: actions/upload-artifact@v4
-        if: always()
+  cypress-run:
+    runs-on: ubuntu-24.04
+    needs: install
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download the build folder
+        uses: actions/download-artifact@v4
         with:
-          name: cypress-videos-chrome
-          path: cypress/videos
-          retention-days: 1
+          name: build
+          path: build
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          start: npm start
+          browser: chrome
