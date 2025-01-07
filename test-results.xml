@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="22.878" tests="1" failures="0">
+  <testsuite name="Root Suite" timestamp="2024-12-20T04:08:21" tests="0" file="cypress\e2e\originations react.cy.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="To create a new proposal and verify its existance on proposal list" timestamp="2024-12-20T04:08:21" tests="1" time="22.875" failures="0">
+    <testcase name="To create a new proposal and verify its existance on proposal list should create a new proposal and validate it existance" time="18.782" classname="should create a new proposal and validate it existance">
+    </testcase>
+  </testsuite>
+</testsuites>

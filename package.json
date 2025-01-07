@@ -1,0 +1,14 @@
+{
+  "name": "cypress",
+  "version": "1.0.0",
+  "scripts": {
+    "cy:open:chrome": "npx cypress open --browser chrome",
+    "cy:run:chrome": "npx cypress run --browser chrome"
+  },
+  "devDependencies": {
+    "cypress": "^13.17.0",
+    "cypress-multi-reporters": "^2.0.4",
+    "cypress-mochawesome-reporter": "^3.8.2",
+    "mocha-junit-reporter": "^2.2.1"
+  }
+}
