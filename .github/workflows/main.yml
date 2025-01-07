@@ -1,0 +1,64 @@
+name: Testes Cypress
+on: push
+
+jobs:
+  cypress-run-chrome:
+    runs-on: ubuntu-latest
+ steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+- name: Cypress.io rodando testes chrome
+        uses: cypress-io/github-action@v6
+        with:
+          command: npx cypress run --browser chrome
+#========================================================
+- name: Prints de execução de testes
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cypress-screenshots-chrome
+          path: cypress/screenshots
+          retention-days: 1
+#========================================================
+- name: Videos da execução de testes
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cypress-videos-chrome
+          path: cypress/videos
+          retention-days: 1
+#========================================================
+#Na linha 2 informa que é para rodar esse script a cada "push" na main/master
+#Na linha 4 informa quais os jobs ou trabalhos que será executado ao rodar o script
+#Na linha 5 é o nome que eu dei para o meu job/trabalho
+#Na linha 6 informo que desejo rodar o script baseado no ubuntu versão estável mais recente
+#Na linha 7 é onde se encontra os passos que o script vai precisar executar na ordem correta
+#Na linha 8 dou um nome para a ação que o github vai fazer
+#Na linha 9 é executado a ação de verifica seu repositório, para que seu fluxo de trabalho possa acessá-lo
+#Na linha 11 é utilizado para executar os testes completos e de componentes do Cypress que inclui instalação de npm, pnpm e Yarn entre outros
+#Na linha 13 executo o comando para rodar os testes com o chrome
+#Na linha 15 insiro um nome para essa etapa da execução do script
+#Na linha 16 é utilizado a ação para fazer o upload dos arquivos que será gerado na execução dos testes
+#Na linha 17 eu coloco a condição de que todas as vezes o github gere alguma evidência ao executar seja capturada
+#Na linha 19 eu coloco o nome da execução dentro do upload dos arquivo como sendo o cypress-screenshot (print)
+#Na linha 20 eu informei o caminho de onde os arquivos após gerados serão armazenados para download
+#Na linha 21 informo que esses documentos vão estar disponíveis para downloads por 1 dia (o máximo é 90)
+#Na linha 28 eu coloco o nome da execução dentro do upload dos arquivo como sendo o cypresso-videos-chrome
+#Na linha 29 eu informei o caminho de onde os arquivos após gerados serão armazenados para download também
+#Na linha 2 informa que é para rodar esse script a cada "push" na main/master
+#Na linha 4 informa quais os jobs ou trabalhos que será executado ao rodar o script
+#Na linha 5 é o nome que eu dei para o meu job/trabalho
+#Na linha 6 informo que desejo rodar o script baseado no ubuntu versão estável mais recente
+#Na linha 7 é onde se encontra os passos que o script vai precisar executar na ordem correta
+#Na linha 8 dou um nome para a ação que o github vai fazer
+#Na linha 9 é executado a ação de verifica seu repositório, para que seu fluxo de trabalho possa acessá-lo
+#Na linha 11 é utilizado para executar os testes completos e de componentes do Cypress que inclui instalação de npm, pnpm e Yarn entre outros
+#Na linha 13 executo o comando para rodar os testes com o chrome
+#Na linha 15 insiro um nome para essa etapa da execução do script
+#Na linha 16 é utilizado a ação para fazer o upload dos arquivos que será gerado na execução dos testes
+#Na linha 17 eu coloco a condição de que todas as vezes o github gere alguma evidência ao executar seja capturada
+#Na linha 19 eu coloco o nome da execução dentro do upload dos arquivo como sendo o cypress-screenshot (print)
+#Na linha 20 eu informei o caminho de onde os arquivos após gerados serão armazenados para download
+#Na linha 21 informo que esses documentos vão estar disponíveis para downloads por 1 dia (o máximo é 90)
+#Na linha 28 eu coloco o nome da execução dentro do upload dos arquivo como sendo o cypresso-videos-chrome
+#Na linha 29 eu informei o caminho de onde os arquivos após gerados serão armazenados para download também
