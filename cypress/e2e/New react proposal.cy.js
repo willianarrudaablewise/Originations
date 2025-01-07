@@ -39,36 +39,5 @@ function gerarNIFValido() {
   //0	Cartão, 1	Crédito, 2	Crédito Clássico, 3	Cartão, 4	CCL, 5	Multiproduto, 6	PPR
   cy.get('#b5-b13-StartNewProposalBtn').click();
   cy.get('#b5-b13-StartNewProposalBtn').should('be.visible');
-  cy.get('.custom-link margin-left-m').click();
-  cy.get('.form-control OSFillParent').click();
-  cy.get('[data-input]').should('be.visible');
-  cy.get('[data-input]').type(nifAleatorio);
-  cy.url().should('contains', 'https://acs-dev.outsystemscloud.com/OnBoarding_R_KYC_KYB');
-  cy.get('.margin-right-s').click();
-  cy.get('[data-input]').should('be.visible');
-  cy.get('[data-input]').type(nifAleatorio);
-  cy.contains('button', 'Add').click();
-        cy.wait(7000);
-        cy.get('input[data-input][id*="Input_Name"]').eq(0).type(firstName); // Digita no campo
-        cy.get('input[data-input][id*="Input_LastName"]').eq(0).type(lastName);
-        cy.get('select[id*="Dropdown1"]').eq(0).select('4');
-        //0	DOUTOR, 1	DOUTORA, 2	PROFESSOR, 3 PROFESSORA, 4	SENHOR, 5	SENHORA
-        cy.get('select[id*="Dropdown2"]').eq(0).select('1');
-        //0 Female, 1 Male
-  cy.get('input[data-input][type="date"]').eq(0).type('1996-05-20');
-  cy.get('input[data-input][id*="Input_Email"]').eq(0).type('test@example.com');
-  cy.get('input[data-input][id*="Input_Telemovel"]').eq(0).type('910650450');
-  cy.get('input[data-input][id*="Input_Id_TelefoneCasa"]').eq(0).type('210362145');
-  cy.get('input[data-input][id*="Input_TelefoneEmprego"]').eq(0).type('210147852');
-  cy.get('input[data-input][id*="Input_PostCode"]').eq(0).type('1250');
-  cy.get('input[data-input][id*="Input_SubPostCode"]').eq(0).type('271');
-  cy.contains('span', 'Finalizar').click();
-  cy.wait(2000);
-  cy.get('.menu-icon').click();
-  cy.xpath('//span[@class="heading6 expanded-text"][contains(text(),"List of Proposals")]').click()
-  cy.wait(5000);
-  cy.get('#SearchTermInput').type(nifAleatorio);
-  cy.get('#b7-Icon').click();
-  cy.wait(2000);
       })
     })
