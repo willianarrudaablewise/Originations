@@ -1,4 +1,5 @@
 name: Testes Cypress
+
 on:
   push:
     branches:
@@ -7,30 +8,32 @@ on:
 
 jobs:
   cypress-run-chrome:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-22.04 # Versão estável do Ubuntu
     steps:
-      - name: Checkout
+      - name: Checkout do código
         uses: actions/checkout@v4
 
-      - name: Install Node.js
-      uses: actions/setup-node@v4
-      with:
-       node-version: 22.12.0
-      
-      - name: Install dependencies
-        run: npm install # Ou yarn install se você usa yarn
-        
-      - name: Criar diretórios para videos e screenshots
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.12.0 # Configurado para a versão correta do Node.js
+
+      - name: Instalar dependências do projeto
+        run: npm install # Ou 'yarn install', dependendo do gerenciador de pacotes
+
+      - name: Criar diretórios para artefatos de teste
         run: |
           mkdir -p cypress/videos
           mkdir -p cypress/screenshots
 
-      - name: Cypress.io rodando testes chrome
+      - name: Executar testes Cypress no Chrome
         uses: cypress-io/github-action@v6
         with:
+          browser: chrome
+          headless: true
           command: npx cypress run --browser chrome
 
-      - name: Prints da execução de testes
+      - name: Fazer upload de capturas de tela
         uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -38,7 +41,7 @@ jobs:
           path: cypress/screenshots
           retention-days: 1
 
-      - name: Vídeos da execução de testes
+      - name: Fazer upload de vídeos
         uses: actions/upload-artifact@v4
         if: always()
         with:
