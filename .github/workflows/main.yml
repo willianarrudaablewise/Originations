@@ -1,26 +1,31 @@
 name: Testes Cypress
-on: push
+on:
+  push:
+    branches:
+      - main
+      - master
 
 jobs:
   cypress-run-chrome:
     runs-on: ubuntu-24.04
- steps:
+    steps:
       - name: Checkout
         uses: actions/checkout@v4
-- name: Cypress.io rodando testes chrome
+
+      - name: Cypress.io rodando testes chrome
         uses: cypress-io/github-action@v6
         with:
           command: npx cypress run --browser chrome
-#========================================================
-- name: Prints de execução de testes
+
+      - name: Prints da execução de testes
         uses: actions/upload-artifact@v4
         if: always()
         with:
           name: cypress-screenshots-chrome
           path: cypress/screenshots
           retention-days: 1
-#========================================================
-- name: Videos da execução de testes
+
+      - name: Vídeos da execução de testes
         uses: actions/upload-artifact@v4
         if: always()
         with:
