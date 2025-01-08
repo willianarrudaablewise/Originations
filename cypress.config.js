@@ -1,32 +1,44 @@
 const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
-  reporter: 'cypress-multi-reporters',
+  screenshotQuality: 80,
+  video: false, // Configurado como false pelo cypress.json
+  screenshotOnRunFailure: false,
+  videoUploadOnPasses: false,
+  reporter: "cypress-multi-reporters",
   reporterOptions: {
-    reporterEnabled: 'cypress-mochawesome-reporter, mocha-junit-reporter',
-    mochaJunitReporterOptions: { 
-      mochaFile: 'cypress/reports/junit/results-[hash].xml'
+    reporterEnabled: "cypress-mochawesome-reporter, mocha-junit-reporter",
+    mochaJunitReporterOptions: {
+      mochaFile: "cypress/reports/junit/results-[hash].xml",
     },
     cypressMochawesomeReporterOptions: {
+      reportDir: "cypress/reports/mochawesome", // Diretório do relatório
       charts: true,
-      reportPageTitle: 'Relatório de testes',
+      reportPageTitle: "Relatório de testes",
       embeddedScreenshots: true,
       inlineAssets: true,
-      saveAllAttempts: false
-    }
+      saveAllAttempts: false,
+      overwrite: false, // Adicionado do cypress.json
+      html: true,
+      json: true,
+      disableScreenshots: true,
+      disableVideos: true,
+    },
   },
-  defaultCommandTimeout: 15000, // Tempo padrão para espera de comandos (15 segundos)
+  screenshotsFolder: "cypress/screenshots",
+  videosFolder: "cypress/videos",
+  defaultCommandTimeout: 15000,
   viewportWidth: 1280,
   viewportHeight: 720,
   e2e: {
+    video: false, // Configuração de vídeo ajustada do cypress.json
     setupNodeEvents(on, config) {
-      require('cypress-mochawesome-reporter/plugin')(on)
-      // Implementar escutadores de eventos aqui, se necessário
-    }
+      require("cypress-mochawesome-reporter/plugin")(on);
+    },
   },
   component: {
     setupNodeEvents(on, config) {
-      // Implementar escutadores de eventos aqui, se necessário
-    }
-  }
+      // Configuração de eventos para testes de componentes
+    },
+  },
 });
