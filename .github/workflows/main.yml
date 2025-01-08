@@ -25,19 +25,26 @@ jobs:
 
       # Install dependencies
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
-      # Install Cypress
-      - name: Install Cypress
-        run: npx cypress install
+      # Add node_modules/.bin to PATH
+      - name: Add node_modules/.bin to PATH
+        run: echo "::add-path::$(pwd)/node_modules/.bin"
 
-      # Ensure Cypress has execution permissions
-      - name: Ensure permissions for Cypress
-        run: chmod +x ./node_modules/.bin/cypress
+      # Reinstall Cypress to ensure correctness
+      - name: Reinstall Cypress
+        run: npx cypress install --force
+
+      # Debug environment
+      - name: Debug environment
+        run: |
+          ls -l ./node_modules/.bin
+          echo $PATH
+          ./node_modules/.bin/cypress --version
 
       # Run Cypress tests
       - name: Run Cypress tests
-        run: npx cypress run --reporter mochawesome --reporter-options "reportDir=mochawesome-report,overwrite=false,html=false,json=true"
+        run: ./node_modules/.bin/cypress run --reporter mochawesome --reporter-options "reportDir=mochawesome-report,overwrite=false,html=false,json=true"
 
       # Upload Mochawesome report as an artifact
       - name: Upload Mochawesome report
