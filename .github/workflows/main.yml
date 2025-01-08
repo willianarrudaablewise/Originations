@@ -42,8 +42,11 @@ jobs:
       - name: Debug generated JSON reports
         run: ls -l cypress/reports/html/.jsons
 
-  - name: Upload Mochawesome reports
-  uses: actions/upload-artifact@v3
-  with:
-    name: mochawesome-reports
-    path: cypress/reports/html/
+  upload-reports:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Upload Mochawesome reports
+        uses: actions/upload-artifact@v3
+        with:
+          name: mochawesome-reports
+          path: cypress/reports/html/
