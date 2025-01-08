@@ -40,6 +40,9 @@ jobs:
           echo "Conteúdo do diretório cypress/reports/html"
           ls -l cypress/reports/html
 
+      - name: Criar diretório de relatórios caso não exista
+        run: mkdir -p cypress/reports/html
+
       - name: Fazer upload de capturas de tela
         uses: actions/upload-artifact@v4
         if: always()
@@ -61,7 +64,7 @@ jobs:
         if: always()
         with:
           name: mochawesome-report-json
-          path: cypress/reports/html/.jsons/*.json
+          path: cypress/reports/html/*.json  # Ajuste para procurar os arquivos JSON diretamente no diretório html
           retention-days: 1
 
       - name: Fazer upload do relatório Mochawesome (HTML)

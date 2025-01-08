@@ -1,43 +1,39 @@
-const { defineConfig } = require("cypress");
-
 module.exports = defineConfig({
   screenshotQuality: 80,
-  video: false, // Configurado como false para não gravar vídeos dos testes
-  screenshotOnRunFailure: false,
+  video: false,
+  screenshotOnRunFailure: true,
   reporter: "cypress-multi-reporters",
   reporterOptions: {
     reporterEnabled: "cypress-mochawesome-reporter, mocha-junit-reporter",
     mochaJunitReporterOptions: {
-      mochaFile: "cypress/reports/junit/results-[hash].xml", // Relatório em formato JUnit
+      mochaFile: "cypress/reports/junit/results-[hash].xml",
     },
     cypressMochawesomeReporterOptions: {
-      reportDir: "cypress/reports/html", // Diretório de relatórios HTML e JSON
+      reportDir: "cypress/reports/html", // Diretório de relatórios (html e json)
       charts: true,
       reportPageTitle: "Relatório de testes",
       embeddedScreenshots: true,
       inlineAssets: true,
       saveAllAttempts: false,
-      overwrite: false, // Não sobrescrever os relatórios existentes
-      html: true, // Gerar relatório HTML
-      json: true, // Gerar relatório JSON
-      disableScreenshots: true, // Desabilitar captura de tela no Mochawesome (usando as capturas de tela do Cypress)
-      disableVideos: true, // Desabilitar vídeos no Mochawesome (usando a configuração do Cypress)
+      overwrite: false,
+      html: true,
+      json: true,
+      disableScreenshots: true,
+      disableVideos: true,
     },
   },
-  screenshotsFolder: "cypress/screenshots", // Diretório das capturas de tela
-  videosFolder: "cypress/videos", // Diretório dos vídeos (não será utilizado já que video está como false)
-  defaultCommandTimeout: 15000, // Timeout padrão para comandos
-  viewportWidth: 1280, // Largura da tela do navegador para os testes
-  viewportHeight: 720, // Altura da tela do navegador para os testes
+  screenshotsFolder: "cypress/screenshots",
+  videosFolder: "cypress/videos",
+  defaultCommandTimeout: 15000,
+  viewportWidth: 1280,
+  viewportHeight: 720,
   e2e: {
-    video: false, // Desabilitar gravação de vídeo para os testes de e2e
+    video: false,
     setupNodeEvents(on, config) {
-      require("cypress-mochawesome-reporter/plugin")(on); // Configuração do plugin do Mochawesome
+      require("cypress-mochawesome-reporter/plugin")(on);
     },
   },
   component: {
-    setupNodeEvents(on, config) {
-      // Configuração de eventos para testes de componentes
-    },
+    setupNodeEvents(on, config) {},
   },
 });
