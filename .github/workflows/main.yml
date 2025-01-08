@@ -1,6 +1,10 @@
 name: Cypress Tests
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
 
 jobs:
   cypress-run:
@@ -9,14 +13,29 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      # Install NPM dependencies, cache them correctly
-      # and run all Cypress tests
-      - name: Cypress run
-        uses: cypress-io/github-action@v6 # use the explicit version number
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22.12.0
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Limpar cache do Cypress para evitar problemas de download
+      - name: Clear Cypress cache
+        run: npx cypress cache clear
+
+      # Instalar Cypress manualmente
+      - name: Install Cypress
+        run: npx cypress install
+
+      - name: Run Cypress tests
+        uses: cypress-io/github-action@v6
         with:
           command: npm run ui-regression
 
-      - name: Uploading artifact
+      - name: Upload artifact
         uses: actions/upload-artifact@v3
         if: always()
         with:
