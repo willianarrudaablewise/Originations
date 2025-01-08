@@ -5,9 +5,9 @@
     "passes": 0,
     "pending": 0,
     "failures": 1,
-    "start": "2025-01-08T01:56:16.826Z",
-    "end": "2025-01-08T01:56:50.467Z",
-    "duration": 33641,
+    "start": "2025-01-08T02:31:20.794Z",
+    "end": "2025-01-08T02:31:57.043Z",
+    "duration": 36249,
     "testsRegistered": 1,
     "passPercent": 0,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "f2c1109f-131e-413e-a3ec-df705ac9cb4e",
+      "uuid": "2e758abf-66cd-4cac-8695-ce2daae6ccfd",
       "title": "",
       "fullFile": "cypress\\e2e\\originations react.cy.js",
       "file": "cypress\\e2e\\originations react.cy.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "2111e642-6f6e-47f9-b9c8-eb990daba10d",
+          "uuid": "4e2854b6-d02d-4f4a-86d4-a9bea5d41e0c",
           "title": "To create a new proposal and verify its existance on proposal list",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "should create a new proposal and validate it existance",
               "fullTitle": "To create a new proposal and verify its existance on proposal list should create a new proposal and validate it existance",
               "timedOut": null,
-              "duration": 30240,
+              "duration": 32402,
               "state": "failed",
               "speed": null,
               "pass": false,
@@ -51,8 +51,8 @@
                 "estack": "AssertionError: Timed out retrying after 15000ms: Expected to find element: `#b3-b14-ProductGroupDropdown`, but never found it.\n    at Context.eval (webpack://cypress/./cypress/e2e/originations react.cy.js:37:39)",
                 "diff": null
               },
-              "uuid": "b1ba982e-0451-4be3-b149-83a4175c1e8a",
-              "parentUUID": "2111e642-6f6e-47f9-b9c8-eb990daba10d",
+              "uuid": "34969967-dda8-4d92-beca-cb7eb8fd08be",
+              "parentUUID": "4e2854b6-d02d-4f4a-86d4-a9bea5d41e0c",
               "isHook": false,
               "skipped": false
             }
@@ -60,11 +60,11 @@
           "suites": [],
           "passes": [],
           "failures": [
-            "b1ba982e-0451-4be3-b149-83a4175c1e8a"
+            "34969967-dda8-4d92-beca-cb7eb8fd08be"
           ],
           "pending": [],
           "skipped": [],
-          "duration": 30240,
+          "duration": 32402,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
