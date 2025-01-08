@@ -65,5 +65,6 @@ cy.wait(5000);
 cy.get('#SearchTermInput').type(nifAleatorio);
 cy.get('#b7-Icon').click();
 cy.wait(2000);
+
     })
   })
