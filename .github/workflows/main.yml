@@ -13,42 +13,37 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Check out the repository code
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Set up Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 22.12.0
 
-      # Install dependencies
       - name: Install dependencies
         run: npm ci
 
-      # Add node_modules/.bin to PATH
       - name: Add node_modules/.bin to PATH
         run: echo "$(pwd)/node_modules/.bin" >> $GITHUB_PATH
 
-      # Reinstall Cypress to ensure correctness
       - name: Reinstall Cypress
         run: npx cypress install --force
 
-      # Debug environment
-      - name: Debug environment
-        run: |
-          ls -l ./node_modules/.bin
-          echo $PATH
-          ./node_modules/.bin/cypress --version
+      - name: Create reports directory
+        run: mkdir -p cypress/reports/html/.jsons
 
-      # Run Cypress tests
       - name: Run Cypress tests
-        run: ./node_modules/.bin/cypress run --reporter mochawesome --reporter-options "reportDir=mochawesome-report,overwrite=false,html=false,json=true"
+        run: |
+          ./node_modules/.bin/cypress run \
+          --reporter mochawesome \
+          --reporter-options "reportDir=cypress/reports/html/.jsons,overwrite=false,html=false,json=true"
 
-      # Upload Mochawesome report as an artifact
-      - name: Upload Mochawesome report
-        uses: actions/upload-artifact@v3
-        with:
-          name: mochawesome-report
-          path: mochawesome-report/
+      - name: Debug generated JSON reports
+        run: ls -l cypress/reports/html/.jsons
+
+  - name: Upload Mochawesome reports
+  uses: actions/upload-artifact@v3
+  with:
+    name: mochawesome-reports
+    path: cypress/reports/html/
