@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="Mocha Tests" time="34.320" tests="1" failures="1">
-  <testsuite name="Root Suite" timestamp="2025-01-08T01:37:09" tests="0" file="cypress\e2e\originations react.cy.js" time="0.000" failures="0">
+<testsuites name="Mocha Tests" time="34.716" tests="1" failures="1">
+  <testsuite name="Root Suite" timestamp="2025-01-08T02:54:15" tests="0" file="cypress\e2e\originations react.cy.js" time="0.000" failures="0">
   </testsuite>
-  <testsuite name="To create a new proposal and verify its existance on proposal list" timestamp="2025-01-08T01:37:09" tests="1" time="34.314" failures="1">
+  <testsuite name="To create a new proposal and verify its existance on proposal list" timestamp="2025-01-08T02:54:15" tests="1" time="34.708" failures="1">
     <testcase name="To create a new proposal and verify its existance on proposal list should create a new proposal and validate it existance" time="0.000" classname="should create a new proposal and validate it existance">
       <failure message="Timed out retrying after 15000ms: Expected to find element: `#b3-b14-ProductGroupDropdown`, but never found it." type="AssertionError"><![CDATA[AssertionError: Timed out retrying after 15000ms: Expected to find element: `#b3-b14-ProductGroupDropdown`, but never found it.
     at Context.eval (webpack://cypress/./cypress/e2e/originations react.cy.js:37:39)]]></failure>

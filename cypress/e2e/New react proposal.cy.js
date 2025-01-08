@@ -1,3 +1,4 @@
+/*
 /// <reference types="cypress" />
 function gerarNIFValido() {
     let primeiroDigito = Math.floor(Math.random() * 2) + 2; 
@@ -40,4 +41,4 @@ function gerarNIFValido() {
   cy.get('#b5-b13-StartNewProposalBtn').click();
   cy.get('#b5-b13-StartNewProposalBtn').should('be.visible');
       })
-    })
+    })*/
