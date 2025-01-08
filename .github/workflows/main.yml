@@ -21,7 +21,7 @@ jobs:
       - name: Instalar dependências do projeto
         run: |
           npm ci
-          npx cypress install # Garante que o Cypress seja baixado corretamente
+          npx cypress install
 
       - name: Corrigir permissões do Cypress
         run: chmod +x ./node_modules/.bin/cypress
@@ -30,15 +30,15 @@ jobs:
         run: npx cypress verify
 
       - name: Executar testes Cypress no Chrome
-        run: npm run cy:run:chrome # Usa o script definido no package.json
+        run: npm run cy:run:chrome
 
-      - name: Esperar 5 segundos para garantir que os relatórios sejam gerados
-        run: sleep 10
+      - name: Esperar 30 segundos para garantir que os relatórios sejam gerados
+        run: sleep 30
 
       - name: Listar arquivos para verificar os relatórios
         run: |
-          echo "Conteúdo do diretório cypress/reports"
-          ls -l cypress/reports
+          echo "Conteúdo do diretório cypress/reports/html"
+          ls -l cypress/reports/html
 
       - name: Fazer upload de capturas de tela
         uses: actions/upload-artifact@v4
@@ -61,7 +61,7 @@ jobs:
         if: always()
         with:
           name: mochawesome-report-json
-          path: cypress/reports/mochawesome/*.json
+          path: cypress/reports/html/.jsons/*.json
           retention-days: 1
 
       - name: Fazer upload do relatório Mochawesome (HTML)
@@ -69,5 +69,5 @@ jobs:
         if: always()
         with:
           name: mochawesome-report-html
-          path: cypress/reports/mochawesome/*.html
+          path: cypress/reports/html/*.html
           retention-days: 1
