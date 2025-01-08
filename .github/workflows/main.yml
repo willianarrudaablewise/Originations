@@ -24,14 +24,13 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Add node_modules/.bin to PATH
-        run: echo "$(pwd)/node_modules/.bin" >> $GITHUB_PATH
+      - name: Create directories for reports and screenshots
+        run: |
+          mkdir -p cypress/reports/json
+          mkdir -p cypress/screenshots
 
       - name: Reinstall Cypress
         run: npx cypress install --force
-
-      - name: Create reports directory
-        run: mkdir -p cypress/reports/json
 
       - name: Run Cypress tests
         run: |
@@ -39,14 +38,17 @@ jobs:
           --reporter mochawesome \
           --reporter-options "reportDir=cypress/reports/json,overwrite=false,html=false,json=true"
 
-      - name: Debug generated JSON reports
-        run: ls -l cypress/reports/json
+      - name: List reports directory
+        run: ls -lR cypress/reports/
 
-  upload-reports:
-    runs-on: ubuntu-latest
-    steps:
       - name: Upload Mochawesome reports
         uses: actions/upload-artifact@v3
         with:
           name: mochawesome-reports
           path: cypress/reports/json/
+
+      - name: Upload screenshots
+        uses: actions/upload-artifact@v3
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots/
