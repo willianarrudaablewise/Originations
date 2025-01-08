@@ -11,24 +11,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 22.12.0
+          node-version: 22.12.0  # Versão LTS recomendada
           cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
-
-      # Limpar cache do Cypress para evitar problemas de download
-      - name: Clear Cypress cache
-        run: npx cypress cache clear
-
-      # Instalar Cypress manualmente
-      - name: Install Cypress
-        run: npx cypress install
 
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6
@@ -36,7 +28,7 @@ jobs:
           command: npm run ui-regression
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: cypress-execution-report
