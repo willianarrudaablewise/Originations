@@ -2,8 +2,8 @@ const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
   screenshotQuality: 80,
-  video: false,
-  screenshotOnRunFailure: true,
+  video: false, // Desabilitar vídeos
+  screenshotOnRunFailure: true, // Ativar capturas de tela em falhas
   reporter: "cypress-multi-reporters", // Usar múltiplos reportes
   reporterOptions: {
     reporterEnabled: "cypress-mochawesome-reporter, mocha-junit-reporter", // Definir Mochawesome e JUnit
@@ -12,15 +12,15 @@ module.exports = defineConfig({
     },
     cypressMochawesomeReporterOptions: {
       reportDir: "cypress/reports/html", // Diretório para relatórios html e json
-      charts: true,
+      charts: true, // Incluir gráficos no relatório
       reportPageTitle: "Relatório de testes",
-      embeddedScreenshots: true,
-      inlineAssets: true,
-      saveAllAttempts: false,
-      overwrite: false,
+      embeddedScreenshots: true, // Incluir capturas de tela no relatório
+      inlineAssets: true, // Incluir assets inline
+      saveAllAttempts: false, // Salvar apenas o último teste
+      overwrite: false, // Não sobrescrever relatórios anteriores
       html: true, // Gerar relatório HTML
       json: true, // Gerar relatório JSON
-      disableScreenshots: false, // Garantir que capturas de tela sejam incluídas
+      disableScreenshots: false, // Garantir que as capturas de tela sejam incluídas
       disableVideos: true, // Desabilitar vídeos
     },
   },
