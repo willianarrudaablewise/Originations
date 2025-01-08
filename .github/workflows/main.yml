@@ -21,6 +21,12 @@ jobs:
       - name: Instalar dependências do projeto
         run: npm install
 
+      - name: Verificar a instalação do Cypress
+        run: npx cypress verify
+
+      - name: Corrigir permissões do Cypress
+        run: chmod +x ./node_modules/.bin/cypress
+
       - name: Criar diretórios para artefatos de teste
         run: |
           mkdir -p cypress/videos
