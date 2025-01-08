@@ -8,7 +8,7 @@ on:
 
 jobs:
   cypress-run-chrome:
-    runs-on: ubuntu-22.04 # Versão estável do Ubuntu
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout do código
         uses: actions/checkout@v4
@@ -16,10 +16,10 @@ jobs:
       - name: Configurar Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22.12.0 # Configurado para a versão correta do Node.js
+          node-version: 22.12.0
 
       - name: Instalar dependências do projeto
-        run: npm install # Ou 'yarn install', dependendo do gerenciador de pacotes
+        run: npm install
 
       - name: Criar diretórios para artefatos de teste
         run: |
@@ -27,11 +27,7 @@ jobs:
           mkdir -p cypress/screenshots
 
       - name: Executar testes Cypress no Chrome
-        uses: cypress-io/github-action@v6
-        with:
-          browser: chrome
-          headless: true
-          command: npx cypress run --browser chrome
+        run: npm run cy:run:chrome # Usa o script definido no package.json
 
       - name: Fazer upload de capturas de tela
         uses: actions/upload-artifact@v4

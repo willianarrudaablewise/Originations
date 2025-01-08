@@ -1,5 +1,6 @@
 {
     "screenshotQuality": 80,
-  "screenshotOnRunFailure": true
+  "screenshotOnRunFailure": true,
+  "video": true
   }
   
