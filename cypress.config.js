@@ -1,43 +1,44 @@
-const { defineConfig } = require('cypress'); // Importar corretamente
+const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
   screenshotQuality: 80,
-  video: false, // Configurado como false pelo cypress.json
+  video: false, // Desabilitar vídeos
   screenshotOnRunFailure: true,
-  reporter: "cypress-multi-reporters",
+  reporter: "cypress-multi-reporters", // Usar múltiplos reportes
   reporterOptions: {
-    reporterEnabled: "cypress-mochawesome-reporter, mocha-junit-reporter",
+    reporterEnabled: "cypress-mochawesome-reporter, mocha-junit-reporter", // Definir Mochawesome e JUnit
     mochaJunitReporterOptions: {
-      mochaFile: "cypress/reports/junit/results-[hash].xml",
+      mochaFile: "cypress/reports/junit/results-[hash].xml", // Relatório JUnit
     },
     cypressMochawesomeReporterOptions: {
-      reportDir: "cypress/reports/html", // Diretório do relatório
+      reportDir: "cypress/reports/html", // Diretório para relatórios html e json
       charts: true,
       reportPageTitle: "Relatório de testes",
       embeddedScreenshots: true,
       inlineAssets: true,
       saveAllAttempts: false,
-      overwrite: false, // Adicionado do cypress.json
-      html: true,
-      json: true,
-      disableScreenshots: true,
-      disableVideos: true,
+      overwrite: false,
+      html: true, // Gerar relatório HTML
+      json: true, // Gerar relatório JSON
+      disableScreenshots: false, // Garantir que capturas de tela sejam incluídas
+      disableVideos: true, // Desabilitar vídeos
     },
   },
-  screenshotsFolder: "cypress/screenshots",
-  videosFolder: "cypress/videos",
+  screenshotsFolder: "cypress/screenshots", // Diretório para capturas de tela
+  videosFolder: "cypress/videos", // Diretório para vídeos (se habilitado)
   defaultCommandTimeout: 15000,
   viewportWidth: 1280,
   viewportHeight: 720,
   e2e: {
-    video: false, // Configuração de vídeo ajustada do cypress.json
+    video: false, // Desabilitar vídeo para os testes
     setupNodeEvents(on, config) {
+      // Configurar o plugin Mochawesome
       require("cypress-mochawesome-reporter/plugin")(on);
     },
   },
   component: {
     setupNodeEvents(on, config) {
-      // Configuração de eventos para testes de componentes
+      // Configuração para testes de componentes (se houver)
     },
   },
 });
