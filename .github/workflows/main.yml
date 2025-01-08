@@ -27,6 +27,14 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      # Install Cypress
+      - name: Install Cypress
+        run: npx cypress install
+
+      # Ensure Cypress has execution permissions
+      - name: Ensure permissions for Cypress
+        run: chmod +x ./node_modules/.bin/cypress
+
       # Run Cypress tests
       - name: Run Cypress tests
         run: npx cypress run --reporter mochawesome --reporter-options "reportDir=mochawesome-report,overwrite=false,html=false,json=true"
