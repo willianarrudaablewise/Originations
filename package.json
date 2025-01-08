@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "cy:open:chrome": "npx cypress open --browser chrome",
-    "cy:run:chrome": "npx cypress run --browser chrome"
+    "cy:run:chrome": "npx cypress run --browser chrome --reporter mochawesome"
   },
   "devDependencies": {
     "@faker-js/faker": "^9.3.0",
