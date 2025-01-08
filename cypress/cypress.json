@@ -1,6 +1,7 @@
-{
+  {
     "screenshotQuality": 80,
-  "screenshotOnRunFailure": true,
-  "video": true
+    "video": true,
+    "screenshotOnRunFailure": true,
+    "videoUploadOnPasses": false
   }
   

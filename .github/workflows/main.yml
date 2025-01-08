@@ -33,6 +33,7 @@ jobs:
         run: |
           mkdir -p cypress/videos
           mkdir -p cypress/screenshots
+          mkdir -p cypress/reports/mochawesome
 
       - name: Executar testes Cypress no Chrome
         run: npm run cy:run:chrome # Usa o script definido no package.json
@@ -51,4 +52,20 @@ jobs:
         with:
           name: cypress-videos-chrome
           path: cypress/videos
+          retention-days: 1
+
+      - name: Fazer upload do relatório Mochawesome (JSON)
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: mochawesome-report-json
+          path: cypress/reports/mochawesome/*.json
+          retention-days: 1
+
+      - name: Fazer upload do relatório Mochawesome (HTML)
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: mochawesome-report-html
+          path: cypress/reports/mochawesome/*.html
           retention-days: 1
