@@ -1,46 +1,39 @@
-name: Testes Cypress
+name: Run Cypress Tests and Generate Mochawesome Report
 
 on:
   push:
     branches:
       - main
-      - master
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  cypress-run-chrome:
-    runs-on: ubuntu-22.04
-    steps:
-      - name: Checkout do código
-        uses: actions/checkout@v4
+  cypress-tests:
+    runs-on: ubuntu-latest
 
-      - name: Configurar Node.js
-        uses: actions/setup-node@v4
+    steps:
+      # Check out the repository code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Set up Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
           node-version: 22.12.0
 
-      - name: Instalar dependências do projeto
-        run: |
-          npm ci
-          npx cypress install
+      # Install dependencies
+      - name: Install dependencies
+        run: npm install
 
-      - name: Corrigir permissões do Cypress
-        run: chmod +x ./node_modules/.bin/cypress
+      # Run Cypress tests
+      - name: Run Cypress tests
+        run: npx cypress run --reporter mochawesome --reporter-options "reportDir=mochawesome-report,overwrite=false,html=false,json=true"
 
-      - name: Verificar a instalação do Cypress
-        run: npx cypress verify
-
-      - name: Executar testes Cypress no Chrome
-        run: npm run cy:run:chrome
-
-      - name: Esperar 60 segundos para garantir que os relatórios sejam gerados
-        run: sleep 60
-
-      - name: Listar arquivos para verificar os relatórios
-        run: |
-          echo "Conteúdo do diretório cypress/reports/html"
-          ls -l cypress/reports/html
-
-      - name: Criar diretório de relatórios caso não exista
-        run: mkdir -p cypress/reports/html
-
-      - name: Verific
+      # Upload Mochawesome report as an artifact
+      - name: Upload Mochawesome report
+        uses: actions/upload-artifact@v3
+        with:
+          name: mochawesome-report
+          path: mochawesome-report/
