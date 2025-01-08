@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "ui-regression": "cypress run --browser chrome --spec cypress/e2e/1-getting-started/**/*.js"
+    "ui-regression": "cypress run --browser chrome --spec 'cypress/e2e/**/*.cy.{js,ts}'"
   },
   "author": "",
   "license": "ISC",
@@ -12,6 +12,7 @@
     "@faker-js/faker": "^9.3.0",
     "cypress": "^13.17.0",
     "cypress-mochawesome-reporter": "^3.8.2",
-    "cypress-xpath": "^2.0.1"
+    "cypress-xpath": "^2.0.1",
+    "glob": "^9.3.5"
   }
 }
