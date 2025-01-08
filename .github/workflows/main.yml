@@ -29,12 +29,6 @@ jobs:
       - name: Verificar a instalação do Cypress
         run: npx cypress verify
 
-      - name: Criar diretórios para artefatos de teste
-        run: |
-          mkdir -p cypress/videos
-          mkdir -p cypress/screenshots
-          mkdir -p cypress/reports/mochawesome
-
       - name: Executar testes Cypress no Chrome
         run: npm run cy:run:chrome # Usa o script definido no package.json
 
@@ -59,7 +53,7 @@ jobs:
         if: always()
         with:
           name: mochawesome-report-json
-          path: cypress/reports/mochawesome/*.json
+          path: cypress/reports/*.json
           retention-days: 1
 
       - name: Fazer upload do relatório Mochawesome (HTML)
@@ -67,5 +61,5 @@ jobs:
         if: always()
         with:
           name: mochawesome-report-html
-          path: cypress/reports/mochawesome/*.html
+          path: cypress/reports/*.html
           retention-days: 1
