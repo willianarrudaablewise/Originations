@@ -36,7 +36,7 @@ jobs:
         run: |
           ./node_modules/.bin/cypress run \
           --reporter mochawesome \
-          --reporter-options "reportDir=cypress/reports/json,overwrite=false,html=false,json=true"
+          --reporter-options "reportDir=cypress/reports/json,overwrite=false,json=true"
 
       - name: List reports directory
         run: ls -lR cypress/reports/
