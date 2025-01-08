@@ -3,7 +3,7 @@ const { defineConfig } = require("cypress");
 module.exports = defineConfig({
   screenshotQuality: 80,
   video: false, // Configurado como false para não gravar vídeos dos testes
-  screenshotOnRunFailure: true,
+  screenshotOnRunFailure: false,
   reporter: "cypress-multi-reporters",
   reporterOptions: {
     reporterEnabled: "cypress-mochawesome-reporter, mocha-junit-reporter",
