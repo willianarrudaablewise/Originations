@@ -14,11 +14,14 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import 'cypress-mochawesome-reporter/register';
+
 import './commands'
+import 'cypress-mochawesome-reporter/register';
 require('cypress-xpath');
   // cypress/support/e2e.js
-
+  module.exports = (on, config) => {
+    require('cypress-mochawesome-reporter/plugin')(on);
+  };
   //comando para ignorar erros de exceção
   Cypress.on('uncaught:exception', (err, runnable) => {
     return false;
