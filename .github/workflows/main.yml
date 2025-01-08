@@ -31,16 +31,16 @@ jobs:
         run: npx cypress install --force
 
       - name: Create reports directory
-        run: mkdir -p cypress/reports/html/.jsons
+        run: mkdir -p cypress/reports/json
 
       - name: Run Cypress tests
         run: |
           ./node_modules/.bin/cypress run \
           --reporter mochawesome \
-          --reporter-options "reportDir=cypress/reports/html/.jsons,overwrite=false,html=false,json=true"
+          --reporter-options "reportDir=cypress/reports/json,overwrite=false,html=false,json=true"
 
       - name: Debug generated JSON reports
-        run: ls -l cypress/reports/html/.jsons
+        run: ls -l cypress/reports/json
 
   upload-reports:
     runs-on: ubuntu-latest
@@ -49,4 +49,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: mochawesome-reports
-          path: cypress/reports/html/
+          path: cypress/reports/json/
