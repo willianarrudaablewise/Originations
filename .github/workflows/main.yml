@@ -32,6 +32,14 @@ jobs:
       - name: Executar testes Cypress no Chrome
         run: npm run cy:run:chrome # Usa o script definido no package.json
 
+      - name: Esperar 5 segundos para garantir que os relatórios sejam gerados
+        run: sleep 10
+
+      - name: Listar arquivos para verificar os relatórios
+        run: |
+          echo "Conteúdo do diretório cypress/reports"
+          ls -l cypress/reports
+
       - name: Fazer upload de capturas de tela
         uses: actions/upload-artifact@v4
         if: always()
@@ -53,7 +61,7 @@ jobs:
         if: always()
         with:
           name: mochawesome-report-json
-          path: cypress/reports/*.json
+          path: cypress/reports/mochawesome/*.json
           retention-days: 1
 
       - name: Fazer upload do relatório Mochawesome (HTML)
@@ -61,5 +69,5 @@ jobs:
         if: always()
         with:
           name: mochawesome-report-html
-          path: cypress/reports/*.html
+          path: cypress/reports/mochawesome/*.html
           retention-days: 1

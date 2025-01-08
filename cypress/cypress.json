@@ -5,10 +5,13 @@
   "videoUploadOnPasses": false,
   "reporter": "mochawesome",
   "reporterOptions": {
-    "reportDir": "cypress/reports",
+    "reportDir": "cypress/reports/mochawesome",
     "overwrite": false,
     "html": true,
-    "json": true
+    "json": true,
+    "disableScreenshots": true,
+    "disableVideos": true
   },
-  "screenshotsFolder": "cypress/screenshots"
+  "screenshotsFolder": "cypress/screenshots",
+  "videosFolder": "cypress/videos"
 }
