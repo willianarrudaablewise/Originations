@@ -1,3 +1,4 @@
+const { defineConfig } = require("cypress");
 module.exports = defineConfig({
   screenshotQuality: 80,
   video: false,
