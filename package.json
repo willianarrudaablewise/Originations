@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "ui-regression": "rm -rf cypress/reports/html/* && npx cypress run --browser chrome --headless --spec 'cypress/e2e/**/*.cy.{js,ts}'"
+    "ui-regression": "cypress run --browser chrome --spec 'cypress/e2e/**/*.cy.{js,ts}'"
   },
   "author": "",
   "license": "ISC",
