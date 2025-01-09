@@ -8,29 +8,46 @@ on:
 
 jobs:
   cypress-run:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     steps:
+      # Fazer checkout do código
       - name: Checkout
         uses: actions/checkout@v4
 
+      # Configurar Node.js com cache para dependências
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18.x'  # Usando versão LTS estável
+          node-version: '18.x'
           cache: 'npm'
 
+      # Instalar dependências do projeto
       - name: Install dependencies
         run: npm ci
 
+      # Excluir relatório antigo antes de rodar os testes
+      - name: Clean up old reports
+        run: |
+          echo "Removing old Cypress reports..."
+          rm -rf cypress/reports/html/*
+
+      # Executar os testes do Cypress
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6
         with:
           command: npm run ui-regression
 
-      - name: Upload artifact
+      # Fazer upload do novo relatório como artefato
+      - name: Upload Cypress Report
         uses: actions/upload-artifact@v4
         if: always()
         with:
           name: cypress-execution-report
           path: cypress/reports/html
           retention-days: 7
+
+      # Limpar cache e arquivos temporários (opcional)
+      - name: Cleanup
+        run: |
+          echo "Cleaning up temporary files..."
+          rm -rf node_modules
