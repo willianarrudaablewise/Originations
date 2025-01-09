@@ -35,6 +35,15 @@ jobs:
           path: cypress/reports/html
           retention-days: 7
 
+      - name: Check if report directory exists and contains files
+        run: |
+          if [ -d "cypress/reports/html" ]; then
+            echo "Directory exists"
+            ls -R cypress/reports/html
+          else
+            echo "Directory does not exist"
+          fi
+
       - name: Deploy Mochawesome report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
