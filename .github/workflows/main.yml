@@ -34,3 +34,9 @@ jobs:
           name: cypress-execution-report
           path: cypress/reports/html
           retention-days: 7
+
+      - name: Deploy Mochawesome report to GitHub Pages 
+          uses: peaceiris/actions-gh-pages@v4
+          with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
