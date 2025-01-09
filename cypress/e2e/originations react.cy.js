@@ -1,4 +1,4 @@
-/*/// <reference types="cypress" />
+/// <reference types="cypress" />
 function gerarNIFValido() {
   let primeiroDigito = Math.floor(Math.random() * 2) + 2; 
   let primeiros8 = primeiroDigito.toString();
@@ -67,4 +67,4 @@ cy.get('#b7-Icon').click();
 cy.wait(2000);
 
     })
-  })*/
+  })
