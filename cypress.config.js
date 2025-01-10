@@ -3,7 +3,7 @@ const mochawesome = require("cypress-mochawesome-reporter/plugin");
 
 module.exports = defineConfig({
   screenshotQuality: 80,
-  video: false, // Desabilitar vídeos
+  video: true, // Desabilitar vídeos
   screenshotOnRunFailure: true, // Capturas de tela em falhas
   reporter: "cypress-mochawesome-reporter", // Usar apenas Mochawesome
   reporterOptions: {
@@ -16,8 +16,8 @@ module.exports = defineConfig({
     html: true,
     json: true,
   },
-  screenshotsFolder: "cypress/screenshots", // Diretório das capturas de tela
-  videosFolder: "cypress/videos", // Diretório dos vídeos
+  screenshotsFolder: "cypress/reports/screenshots", // Diretório das capturas de tela
+  videosFolder: "cypress/reports/videos", // Diretório dos vídeos
   defaultCommandTimeout: 15000,
   viewportWidth: 1280,
   viewportHeight: 720,
