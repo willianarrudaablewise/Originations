@@ -42,5 +42,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: ./cypress/reports/html  # Diretório onde o relatório ou os arquivos estão localizados
+          publish_dir: ./public
