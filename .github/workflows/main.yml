@@ -27,7 +27,15 @@ jobs:
         with:
           command: npm run ui-regression
 
-      - name: Upload artifact
+      - name: Upload videos
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cypress-videos
+          path: cypress/reports/videos
+          retention-days: 7
+
+      - name: Upload report
         uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -36,8 +44,7 @@ jobs:
           retention-days: 7
 
       - name: Deploy Mochawesome report to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
+        uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          folder: cypress/reports/html
           publish_branch: gh-pages
