@@ -1,4 +1,4 @@
-/*
+
 /// <reference types="cypress" />
 function gerarNIFValido() {
   let primeiroDigito = Math.floor(Math.random() * 2) + 2;
@@ -62,4 +62,4 @@ describe('To create a new proposal and verify its existance on proposal list', (
             cy.get('[tabindex="118"]').click();
         })
       })
-          */
+          

@@ -12,7 +12,7 @@ module.exports = defineConfig({
     reportPageTitle: "Relatório de Testes",
     embeddedScreenshots: true,
     inlineAssets: true,
-    overwrite: false,
+    overwrite: true,
     html: true,
     json: true,
   },

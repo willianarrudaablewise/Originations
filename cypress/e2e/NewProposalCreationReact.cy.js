@@ -1,4 +1,5 @@
 /// <reference types="cypress" />
+/*
 const { faker } = require('@faker-js/faker');
 function gerarNIFValido() {
   let primeiros8 = '2';  // Fixando o primeiro dígito como 2
@@ -52,13 +53,11 @@ describe('Criacao completa de uma nova proposta', () => {
         cy.get('[id*="CreateNewEntityBtn"]').click();
         cy.wait(4000);
         // ****** 2- COMEÇA A PREENCHER TODOS OS FORMULÁRIOS
-              cy.get('[id*="EntityIsValidCB"]').click();  // Clica no checkbox
-                cy.get('[id*="EntityIsValidCB"]').should('be.checked');// Verifica se o checkbox está marcado
         // ****** 3 - começa a preencher a primeira sessão (Identification)
               cy.get('select[id*="Dropdown_TitleId"]').as('dropdown');
         cy.get('@dropdown').select('PROFESSORA');
       // Valores: DOUTOR DOUTORA PROFESSOR PROFESSORA SENHOR SENHORA
-      cy.get('[id*="Input_Name"]').type('Cypress'+ firstName);
+      cy.get('[id*="Input_Name"]').type('Automação '+ firstName);
       cy.get('[id*="Input_LastName"]').type(lastName);
       cy.get('select[id*="Dropdown_Gender"]').select('Male');
       //  Valores: 0 Female 1 Male
@@ -81,14 +80,13 @@ describe('Criacao completa de uma nova proposta', () => {
               cy.get('[class*="btn btn-primary custom-btn ThemeGrid_MarginGutter"]').eq(0).click();
               cy.wait(1000); 
               // ****** 3 - começa a preencher a Segunda sessão (Address)
-
-        // Checkbox Morada fiscal
-        cy.get('[id*="Checkbox1"]').click();
-      cy.get('[id*="MoradaLinha1Input"]').type('avenida boa cruz');
-      cy.get('[id*="MoradaLinha2Input"]').type('20');
+      cy.get('[id*="MoradaLinha1Input"]').eq(0).type('avenida boa cruz');
+      cy.get('[id*="MoradaLinha2Input"]').eq(0).type('20');
       cy.get('[id*="CodigoPostalInput"]').eq(0).type('1250');
       cy.get('[id*="SubCodigoPostalInput"]').eq(0).type('728');
-      cy.get('[id*="LocalidadeInput"]').type('barreiro');
+      cy.get('[id*="LocalidadeInput"]').eq(0).type('barreiro');
+              // Checkbox Morada fiscal
+              cy.get('[id*="Checkbox1"]').click();
       // Segundo save & continue
       cy.get('[class*="btn btn-primary custom-btn ThemeGrid_MarginGutter"]').eq(1).click();
       cy.wait(1000); // Aguardar antes de passar para o próximo formulário
@@ -159,4 +157,4 @@ cy.get('[id*="AddHolderLink"]').click();
      cy.get('[class*="btn btn-primary custom-btn ThemeGrid_MarginGutter"]').click();
      
     });
-});
+}); */
