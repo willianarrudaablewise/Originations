@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-/*
+
 const { faker } = require('@faker-js/faker');
 function gerarNIFValido() {
   let primeiros8 = '2';  // Fixando o primeiro dígito como 2
@@ -157,4 +157,4 @@ cy.get('[id*="AddHolderLink"]').click();
      cy.get('[class*="btn btn-primary custom-btn ThemeGrid_MarginGutter"]').click();
      
     });
-}); */
+}); 
