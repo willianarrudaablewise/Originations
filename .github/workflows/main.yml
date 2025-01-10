@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: gh-pages  # Checkout específico da branch gh-pages
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -41,3 +43,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
+          publish_dir: ./cypress/reports/html  # Diretório onde o relatório ou os arquivos estão localizados
