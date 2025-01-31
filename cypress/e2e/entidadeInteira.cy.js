@@ -107,15 +107,5 @@ cy.get('[class*="btn custom-btn"]').eq(0).click();
 cy.get('[class*="btn custom-btn"]').eq(1).click();
 cy.get('[class*="btn btn-primary custom-btn"]').eq(3).click();
 cy.wait(3000);
-// ****** 7 - ACESSA ORIGINATIONS PARA CRIAR A PROPOSTA COM O MESMO NIF ANTERIOR.
-cy.visit('https://acs-dev.outsystemscloud.com/Originations_R/Login')
-                  cy.get('#Input_UsernameVal').should('be.visible');
-        cy.get('#Input_UsernameVal').type('warruda@PT');
-        cy.get('#Input_PasswordVal').type('Ablewise.2024!');
-        cy.get('#b6-Button').click();
-         // expande e clica no menu new proposal
-        cy.get('.menu-icon').should('be.visible');
-        cy.get('.menu-icon').click();
-  cy.get('.margin-top-m:nth-child(2)').click();
     });
 }); 

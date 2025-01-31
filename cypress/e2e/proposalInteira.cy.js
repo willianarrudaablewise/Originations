@@ -16,7 +16,7 @@ function gerarNIFValido() {
 }
 describe('Criacao completa de uma nova proposta', () => {
     it('Criacao completa de uma nova proposta', () => {
-        // ****** 8 - ENTRA NO ORIGINATIONS E CRIA UMA NOVA PROPOSTA
+        // ****** 7 - ENTRA NO ORIGINATIONS E CRIA UMA NOVA PROPOSTA
 cy.visit('https://acs-dev.outsystemscloud.com/Originations_R/Login')
                   cy.get('#Input_UsernameVal').should('be.visible');
         cy.get('#Input_UsernameVal').type('warruda@PT');
@@ -26,7 +26,7 @@ cy.visit('https://acs-dev.outsystemscloud.com/Originations_R/Login')
         cy.get('.menu-icon').should('be.visible');
         cy.get('.menu-icon').click();
   cy.get('.margin-top-m:nth-child(2)').click();
-  // ****** 9 - ADICIONA O MESMO NIF UTILIZADO NA ENTIDADE E COMEÇA UMA NOVA PROPOSTA
+  // ****** 8 - ADICIONA O MESMO NIF UTILIZADO NA ENTIDADE E COMEÇA UMA NOVA PROPOSTA
   cy.get('[id*="ITIN_Input"][data-input]').type('247244961');
   cy.get('[id*="SelectProductBtn"]').click();
 cy.get('select[class*="dropdown-display dropdown"]').as('dropdown');
@@ -35,14 +35,14 @@ cy.get('@dropdown').select('Crédito Pessoal');
 // Cria uma new proposal
 cy.get('[id*="StartNewProposalBtn"]').click();
      cy.wait(1000);
-      // ****** 10 - CLICA EM NEXT NAS SESSÕES JÁ PREENCHIDAS
+      // ****** 9 - CLICA EM NEXT NAS SESSÕES JÁ PREENCHIDAS
 // general data next
      cy.get('[id*="NextStepBtn"]').click();
      cy.wait(1000);
      // financial information next
      cy.get('[id*="NextStepBtn"]').click();
 cy.wait(2000);
- // ****** 11 - PREENCHE FINANCIAL INFORMATION DA PROPOSAL
+ // ****** 10 - PREENCHE FINANCIAL INFORMATION DA PROPOSAL
 cy.get('select[id*="HouseStatusDropdown"]').as('dropdown');
 cy.get('@dropdown').select('PROPRIA COM ENCARGOS');
 // Valores: 0 ARRENDADA, 1 EMPRESA, 2 Neutro, 3 Outro, 4 PROPRIA COM ENCARGOS, 5 Propria sem encargos, 6 Sem resposta, 7 VIVE COM FAMILIARES
@@ -68,15 +68,15 @@ cy.get('[id*="CarExpensesInput"]').clear().type("150");
 cy.get('[id*="OtherExpensesInput"]').clear().type("400");
      // Save & continue financial information
      cy.get('[class*="btn btn-primary custom-btn"]').eq(1).click();
-     // ****** 12 - CLICA NO BOTÃO NEXT POIS OS FICHEIROS JA ESTÃO PREENCHIDOS
+     // ****** 11 - CLICA NO BOTÃO NEXT POIS OS FICHEIROS JA ESTÃO PREENCHIDOS
 // Checklist save
 cy.get('[class*="btn btn-primary custom-btn"]').eq(3).click(); 
-// ****** 13 - FAZ O UPLOAD DO FICHEIRO SALARY
+// ****** 12 - FAZ O UPLOAD DO FICHEIRO SALARY
 // Salary receipt 
 cy.get('span.upload-file').find('input[type="file"]').attachFile('imagemteste.jpg');
 cy.get('[class*="btn btn-primary custom-btn"]').eq(4).click();
 cy.wait(7000);
-// ****** 14 - PASSA PELO DECISION
+// ****** 13 - PASSA PELO DECISION
 // Decision Credito pessoal
 cy.get('[id*="RadioButton1-input"]').eq(0).click();
 // Não aceito receber novidades
