@@ -29,6 +29,7 @@ cy.visit('https://acs-dev.outsystemscloud.com/Originations_R/Login')
   // ****** 8 - ADICIONA O MESMO NIF UTILIZADO NA ENTIDADE E COMEÇA UMA NOVA PROPOSTA
   cy.get('[id*="ITIN_Input"][data-input]').type('247244961');
   cy.get('[id*="SelectProductBtn"]').click();
+  cy.wait(1000);
 cy.get('select[class*="dropdown-display dropdown"]').as('dropdown');
 cy.get('@dropdown').select('Crédito Pessoal');
 // Valores: 0	Cartão Crédito, 1	Crédito Pessoal
