@@ -3,7 +3,7 @@ name: Cypress Tests
 on:
   push:
     branches:
-      - main
+      - gh-pages
   pull_request:
 
 jobs:
@@ -32,7 +32,7 @@ jobs:
         if: always()
         with:
           name: cypress-execution-report
-          path: cypress/reports/html
+          path: cypress/
           retention-days: 7
 
       - name: Deploy Mochawesome report to GitHub Pages

@@ -7,7 +7,7 @@ module.exports = defineConfig({
   screenshotOnRunFailure: true, // Capturas de tela em falhas
   reporter: "cypress-mochawesome-reporter", // Usar apenas Mochawesome
   reporterOptions: {
-    reportDir: "cypress/reports/html", // Diretório dos relatórios (ajustado para ser o mesmo que o YAML)
+    reportDir: "cypress/", // Diretório dos relatórios (ajustado para ser o mesmo que o YAML)
     charts: true,
     reportPageTitle: "Relatório de Testes",
     embeddedScreenshots: true,
@@ -16,8 +16,8 @@ module.exports = defineConfig({
     html: true,
     json: true,
   },
-  screenshotsFolder: "cypress/reports/screenshots", // Diretório das capturas de tela
-  videosFolder: "cypress/reports/videos", // Diretório dos vídeos
+  screenshotsFolder: "cypress/", // Diretório das capturas de tela
+  videosFolder: "cypress/", // Diretório dos vídeos
   defaultCommandTimeout: 15000,
   viewportWidth: 1280,
   viewportHeight: 720,
