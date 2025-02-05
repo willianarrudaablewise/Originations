@@ -19,7 +19,7 @@ const { faker } = require('@faker-js/faker');
 let nifAleatorio; // Compartilhado entre os testes
 let currentPageUrl; // Para capturar e reutilizar a URL
 
-describe('Criar uma proposta inteira no old originations', () => {
+describe('Criar uma proposta inteira no Old originations', () => {
   beforeEach(() => {
       if (!nifAleatorio) {
           nifAleatorio = gerarNIFValido();
@@ -75,7 +75,5 @@ describe('Criar uma proposta inteira no old originations', () => {
     cy.xpath("//input[@id='Origination_TH_wt10_block_OutSystemsUIWeb_wt17_block_wtContent_wtMainContent_OutSystemsUIWeb_wt7_block_wtContent_wt2_OutSystemsUIWeb_wt199_block_wtContent_wt57']").click()
     cy.wait(3000);
     cy.get('[tabindex="35"]').click();
-    cy.wait(3000);
-    cy.get('[tabindex="118"]').click();
   });
 });

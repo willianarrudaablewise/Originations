@@ -14,8 +14,8 @@ function gerarNIFValido() {
   let digitoControle = resto < 2 ? 0 : 11 - resto;  // Condicional otimizada
   return primeiros8 + digitoControle;
 }
-describe('Criacao completa de uma nova proposta', () => {
-    it('Criacao completa de uma nova proposta', () => {
+describe('Criacao completa somente da proposal, no URL originations React.', () => {
+    it('Criacao do inicio ao fim de uma nova proposta.', () => {
         // ****** 7 - ENTRA NO ORIGINATIONS E CRIA UMA NOVA PROPOSTA
 cy.visit('https://acs-dev.outsystemscloud.com/Originations_R/Login')
                   cy.get('#Input_UsernameVal').should('be.visible');
@@ -84,5 +84,10 @@ cy.get('[id*="RadioButton1-input"]').eq(0).click();
 cy.get('[id*="Checkbox1"]').click();
  // Decision next button
  cy.get('[id*="NextStepBtn"]').click();
+ // ****** 14 - PASSA PELO Client Deal
+ // Tipo de extrato - extrato papel
+ cy.get('[id*="RadioButton3-input"]').click();
+ // save & continue 
+ cy.get('[class*="btn btn-primary custom-btn"]').eq(5).click();
 });
 }); 
