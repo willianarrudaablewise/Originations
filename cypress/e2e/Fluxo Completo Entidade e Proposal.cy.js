@@ -160,12 +160,12 @@ cy.get('[id*="OtherExpensesInput"]').clear().type("400");
      cy.get('[class*="btn btn-primary custom-btn"]').eq(1).click();
      // ****** 11 - CLICA NO BOTÃO NEXT POIS OS FICHEIROS JA ESTÃO PREENCHIDOS
 // Checklist save
-cy.get('[class*="btn btn-primary custom-btn"]').eq(3).click(); 
+cy.get('[class*="btn btn-primary custom-btn"]').eq(1).click(); 
 // ****** 12 - FAZ O UPLOAD DO FICHEIRO SALARY
 // Salary receipt 
 cy.get('span.upload-file').find('input[type="file"]').attachFile('imagemteste.jpg');
 cy.get('[class*="btn btn-primary custom-btn"]').eq(4).click();
-cy.wait(7000);
+cy.wait(3000);
 // ****** 13 - PASSA PELO DECISION
 // Decision Credito pessoal
 cy.get('[id*="RadioButton1-input"]').eq(0).click();
@@ -174,9 +174,17 @@ cy.get('[id*="Checkbox1"]').click();
  // Decision next button
  cy.get('[id*="NextStepBtn"]').click();
  // ****** 14 - PASSA PELO Client Deal
- // Tipo de extrato - E-extrato papel
- cy.get('[id*="RadioButton3-input"]').click();
  // save & continue 
  cy.get('[class*="btn btn-primary custom-btn"]').eq(5).click();
+ // ****** 15 - PASSA PELO Envio do contrato Core
+ cy.get('[class*="IconsAlign"]').eq(1).click();
+ cy.wait(3000);
+ cy.get('[class*="btn btn-primary custom-btn"]').eq(4).click();
+ // save & continue 
+ // ****** 16 - verifico status finished
+ cy.wait(3000);
+ cy.get('span[data-expression]')
+ .filter(':contains("Finished")')
+ .should('have.text', 'Finished');
     });
 }); 
