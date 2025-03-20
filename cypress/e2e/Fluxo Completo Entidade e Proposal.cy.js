@@ -22,7 +22,7 @@ describe('Criacao completa de um contrato. Iniciando pela criação da entidade 
     it('Inicia a criação de uma entidade no Onboarding até o fim; É direcionado até a pagina de proposal, e finaliza até ter o registro do contrato.', () => {
         // ****** 1 - ENTRA NO ONBOARDING E CRIA UMA NOVA ENTIDADE
         cy.log('NIF Gerado: ' + nifAleatorio);
-        cy.visit('https://acs-dev.outsystemscloud.com/OnBoarding_R_KYC_KYB/');
+        cy.visit('https://acs-dev.outsystemscloud.com/OnBoarding_R/');
         cy.get('#Input_UsernameVal').should('be.visible');
         cy.get('#Input_UsernameVal').type('warruda@PT');
         cy.get('#Input_PasswordVal').type('Ablewise.2024!');
@@ -38,7 +38,7 @@ describe('Criacao completa de um contrato. Iniciando pela criação da entidade 
         cy.get('@dropdown').select('PROFESSORA');
       // Valores: DOUTOR DOUTORA PROFESSOR PROFESSORA SENHOR SENHORA
       cy.get('[id*="Input_Name"]').type('Automação '+ firstName);
-      cy.get('[id*="Input_LastName2"]').type(lastName);
+      cy.get('[id*="Input_LastName"]').type(lastName);
       cy.get('select[id*="Dropdown_Gender"]').select('Male');
       //  Valores: 0 Female 1 Male
       cy.get('select[id*="Dropdown_CivilStatus"]').as('dropdown');
@@ -163,7 +163,9 @@ cy.get('[id*="OtherExpensesInput"]').clear().type("400");
 cy.get('[class*="btn btn-primary custom-btn"]').eq(1).click(); 
 // ****** 12 - FAZ O UPLOAD DO FICHEIRO SALARY
 // Salary receipt 
-cy.get('span.upload-file').find('input[type="file"]').attachFile('imagemteste.jpg');
+cy.get('span.upload-file').eq(0).find('input[type="file"]').attachFile('imagemteste.jpg');
+// AVAL
+cy.get('span.upload-file').eq(1).find('input[type="file"]').attachFile('imagemteste.jpg');
 cy.get('[class*="btn btn-primary custom-btn"]').eq(4).click();
 cy.wait(3000);
 // ****** 13 - PASSA PELO DECISION
@@ -174,12 +176,16 @@ cy.get('[id*="Checkbox1"]').click();
  // Decision next button
  cy.get('[id*="NextStepBtn"]').click();
  // ****** 14 - PASSA PELO Client Deal
- // save & continue 
- cy.get('[class*="btn btn-primary custom-btn"]').eq(5).click();
+ //adiciona seguro 0 External 1 Internal
+ cy.get('select[class*="dropdown-display dropdown custom-input"]').as('dropdown');
+ cy.get('@dropdown').select('External');
+ cy.get('span.upload-file').find('input[type="file"]').attachFile('imagemteste.jpg');
+ cy.get('[class*="btn btn-primary custom-btn"]').eq(6).click();
  // ****** 15 - PASSA PELO Envio do contrato Core
+ cy.wait(2000);
  cy.get('[class*="IconsAlign"]').eq(1).click();
  cy.wait(3000);
- cy.get('[class*="btn btn-primary custom-btn"]').eq(4).click();
+ cy.get('[class*="btn btn-primary custom-btn"]').eq(5).click();
  // save & continue 
  // ****** 16 - verifico status finished
  cy.wait(3000);

@@ -14,15 +14,15 @@ function gerarNIFValido() {
   let digitoControle = resto < 2 ? 0 : 11 - resto;  // Condicional otimizada
   return primeiros8 + digitoControle;
 }
-describe('Criação de uma entidade do inicio ao fim', () => {
+describe('Criacao completa de um contrato. Iniciando pela criação da entidade e posteriormente proposal', () => {
     let nifAleatorio = gerarNIFValido();
     const firstName = faker.name.firstName(); 
           const lastName = faker.name.lastName();
-          const filePath = 'imagemteste.jpg';
-    it('Inicia a criação de uma entidade e vai até o final. URL onboarding', () => {
+          let currentPageUrl; // Para capturar e reutilizar a URL
+    it('Inicia a criação de uma entidade no Onboarding até o fim; É direcionado até a pagina de proposal, e finaliza até ter o registro do contrato.', () => {
         // ****** 1 - ENTRA NO ONBOARDING E CRIA UMA NOVA ENTIDADE
         cy.log('NIF Gerado: ' + nifAleatorio);
-        cy.visit('https://acs-dev.outsystemscloud.com/OnBoarding_R_KYC_KYB/');
+        cy.visit('https://acs-dev.outsystemscloud.com/OnBoarding_R/');
         cy.get('#Input_UsernameVal').should('be.visible');
         cy.get('#Input_UsernameVal').type('warruda@PT');
         cy.get('#Input_PasswordVal').type('Ablewise.2024!');
@@ -38,7 +38,7 @@ describe('Criação de uma entidade do inicio ao fim', () => {
         cy.get('@dropdown').select('PROFESSORA');
       // Valores: DOUTOR DOUTORA PROFESSOR PROFESSORA SENHOR SENHORA
       cy.get('[id*="Input_Name"]').type('Automação '+ firstName);
-      cy.get('[id*="Input_LastName2"]').type(lastName);
+      cy.get('[id*="Input_LastName"]').type(lastName);
       cy.get('select[id*="Dropdown_Gender"]').select('Male');
       //  Valores: 0 Female 1 Male
       cy.get('select[id*="Dropdown_CivilStatus"]').as('dropdown');
@@ -105,7 +105,6 @@ cy.get('[class*="btn btn-primary custom-btn"]').eq(4).click();
 //****** 6 - QUARTA SESSÃO (EXTERNAL VALIDATIONS)
 cy.get('[class*="btn custom-btn"]').eq(0).click();
 cy.get('[class*="btn custom-btn"]').eq(1).click();
-cy.get('[class*="btn btn-primary custom-btn"]').eq(3).click();
 cy.wait(3000);
     });
 }); 
