@@ -182,13 +182,13 @@ cy.get('[id*="Checkbox1"]').click();
  cy.get('span.upload-file').find('input[type="file"]').attachFile('imagemteste.jpg');
  cy.get('[class*="btn btn-primary custom-btn"]').eq(6).click();
  // ****** 15 - PASSA PELO Envio do contrato Core
- cy.wait(2000);
- cy.get('[class*="IconsAlign"]').eq(1).click();
+ cy.wait(5000);
+ cy.get('[class*="IconsAlignDisplayNone"]').click();
  cy.wait(3000);
- cy.get('[class*="btn btn-primary custom-btn"]').eq(5).click();
+ cy.get('[class*="btn btn-primary custom-btn"]').eq(6).click();
  // save & continue 
  // ****** 16 - verifico status finished
- cy.wait(3000);
+ cy.wait(5000);
  cy.get('span[data-expression]')
  .filter(':contains("Finished")')
  .should('have.text', 'Finished');
