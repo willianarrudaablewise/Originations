@@ -27,12 +27,16 @@ jobs:
         with:
           command: npm run ui-regression
 
+      - name: Get current date
+        id: date
+        run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: Cypress-Origination-Report
-          path: cypress/html
+          name: Cypress-Origination-Report-${{ env.date }}
+          path: cypress/reports/html
           retention-days: 7
 
       - name: Deploy Mochawesome report to GitHub Pages
