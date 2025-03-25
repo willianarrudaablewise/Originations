@@ -146,6 +146,7 @@ cy.wait(3000);
 cy.get('[class*="btn custom-btn"]').eq(1).click();
 //Representatives - Adicionar representantes.
 cy.get('[class*="btn btn-primary custom-btn"]').eq(4).click();
+cy.wait(2000);
 cy.get('[id*="Input_ITIN"]').type(nifAleatorioParticular);
 cy.get('[id*="AddBtn"]').click();
     });

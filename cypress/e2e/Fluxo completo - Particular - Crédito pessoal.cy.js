@@ -175,7 +175,7 @@ cy.get('[id*="RadioButton1-input"]').eq(0).click();
  cy.get('[id*="NextStepBtn"]').click();
  // ****** 14 - PASSA PELO Client Deal
  //adiciona seguro 0 External 1 Internal
- cy.wait(3000);
+ cy.wait(5000);
  cy.get('select[class*="dropdown-display dropdown custom-input"]').as('dropdown');
  cy.get('@dropdown').select('External');
  cy.get('span.upload-file').find('input[type="file"]').attachFile('imagemteste.jpg');
