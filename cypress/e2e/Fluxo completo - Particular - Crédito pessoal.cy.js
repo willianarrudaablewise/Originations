@@ -179,9 +179,10 @@ cy.get('[id*="RadioButton1-input"]').eq(0).click();
  cy.get('select[class*="dropdown-display dropdown custom-input"]').as('dropdown');
  cy.get('@dropdown').select('External');
  cy.get('span.upload-file').find('input[type="file"]').attachFile('imagemteste.jpg');
+ cy.wait(3000);
  cy.get('[class*="btn btn-primary custom-btn"]').eq(6).click();
  // ****** 15 - PASSA PELO Envio do contrato Core
- cy.wait(5000);
+ cy.wait(3000);
  cy.get('[class*="IconsAlignDisplayNone"]').click();
  cy.wait(3000);
  cy.get('[class*="btn btn-primary custom-btn"]').eq(6).click();
