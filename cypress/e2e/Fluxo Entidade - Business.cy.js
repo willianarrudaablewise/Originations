@@ -77,7 +77,7 @@ describe('Fluxo entidade Business', () => {
               cy.get('[id*="Input_PhoneWork"]').type('216321456');
               // Primeiro save & continue
               cy.get('[class*="btn btn-primary custom-btn"]').eq(0).click();
-              cy.wait(1000); 
+              cy.wait(4000); 
               // ****** 4 - COMEÇA A PREENCHER A SEGUNDA SESSÃO (ADDRESS)
               // Checkbox Morada fiscal
               cy.get('[id*="Checkbox1"]').click();

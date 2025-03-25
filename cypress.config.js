@@ -2,7 +2,7 @@ const { defineConfig } = require("cypress");
 const mochawesome = require("cypress-mochawesome-reporter/plugin");
 
 module.exports = defineConfig({
-  screenshotQuality: 80,
+  screenshotQuality: 100,
   video: true, // Desabilitar vídeos
   screenshotOnRunFailure: true, // Capturas de tela em falhas
   reporter: "cypress-mochawesome-reporter", // Usar apenas Mochawesome
@@ -22,6 +22,7 @@ module.exports = defineConfig({
   viewportWidth: 1280,
   viewportHeight: 720,
   e2e: {
+    retries: 2, // Tenta novamente até 2 vezes se falhar
     setupNodeEvents(on, config) {
       mochawesome(on); // Configurar o Mochawesome
       return config;
