@@ -1,6 +1,20 @@
 /// <reference types="cypress" />
 const { faker } = require('@faker-js/faker');
-function gerarNIFValido() {
+function gerarNIFEmpresa() {
+  let primeiros8 = '5'; 
+  for (let i = 0; i < 7; i++) {
+      primeiros8 += Math.floor(Math.random() * 10);  
+  }
+  let soma = 0;
+  let pesos = [9, 8, 7, 6, 5, 4, 3, 2];
+  for (let i = 0; i < 8; i++) {
+      soma += parseInt(primeiros8[i]) * pesos[i];
+  }
+  let resto = soma % 11;
+  let digitoControle = resto < 2 ? 0 : 11 - resto;
+  return primeiros8 + digitoControle;
+}
+function gerarNIFParticular() {
   let primeiros8 = '2';  // Fixando o primeiro dígito como 2
   for (let i = 0; i < 7; i++) {
       primeiros8 += Math.floor(Math.random() * 10);  // Adicionando números aleatórios
@@ -15,21 +29,25 @@ function gerarNIFValido() {
   return primeiros8 + digitoControle;
 }
 describe('Criacao completa de um contrato. Iniciando pela criação da entidade e posteriormente proposal', () => {
-    let nifAleatorio = gerarNIFValido();
+    let nifAleatorioEmpresa = gerarNIFEmpresa();
+    let nifAleatorioParticular = gerarNIFParticular();
+    const companyName = faker.company.name(); 
     const firstName = faker.name.firstName(); 
-          const lastName = faker.name.lastName();
+    const lastName = faker.name.lastName();
           let currentPageUrl; // Para capturar e reutilizar a URL
-    it('Inicia a criação de uma entidade no Onboarding até o fim; É direcionado até a pagina de proposal, e finaliza até ter o registro do contrato.', () => {
+    it('Faz o fluxo de uma entidade particular como representante, depois inicia uma entidade com NIF empresarial.', () => {
         // ****** 1 - ENTRA NO ONBOARDING E CRIA UMA NOVA ENTIDADE
-        cy.log('NIF Gerado: ' + nifAleatorio);
+        cy.log('NIF Empresa: ' + nifAleatorioEmpresa);
+        cy.log('NIF Particular: ' + nifAleatorioParticular);
         cy.visit('https://acs-dev.outsystemscloud.com/OnBoarding_R/');
         cy.get('#Input_UsernameVal').should('be.visible');
         cy.get('#Input_UsernameVal').type('warruda@PT');
         cy.get('#Input_PasswordVal').type('Ablewise.2024!');
         cy.get('#b6-Button').click();
+        //cria cadastro particular
         cy.get('[class*="link-container"]').eq(1).click();
         cy.wait(2000);
-        cy.get('[id*="ITIN_Input"]').click().type(nifAleatorio);
+        cy.get('[id*="ITIN_Input"]').click().type(nifAleatorioParticular);
         cy.get('[id*="CreateNewEntityBtn"]').should('be.visible').click();
         cy.wait(4000);
         // ****** 2 - COMEÇA A PREENCHER TODOS OS FORMULÁRIOS
@@ -49,7 +67,7 @@ describe('Criacao completa de um contrato. Iniciando pela criação da entidade 
       cy.get('@dropdown').select('Portugal');
       cy.get('[id*="Input_NaturalnessLocal"]').type('Lisboa');
       cy.get('.custom-upload input[type="file"]').attachFile('imagemteste.jpg');
-              cy.get('[id*="Input_IdentificationNumber"]').type(nifAleatorio);
+              cy.get('[id*="Input_IdentificationNumber"]').type(nifAleatorioParticular);
               cy.get('[id*="Input_IdentificationValidateDate"]').type('2027-05-20', { force: true });
               cy.get('[id*="Input_ChildrenNumber"]').type('1');
               cy.get('[id*="Input_DependentsNumber"]').type('0');
@@ -106,5 +124,29 @@ cy.get('[class*="btn btn-primary custom-btn"]').eq(4).click();
 cy.get('[class*="btn custom-btn"]').eq(0).click();
 cy.get('[class*="btn custom-btn"]').eq(1).click();
 cy.wait(3000);
+// agora inicia uma proposta business
+        cy.get('[class*="link-container"]').eq(1).click();
+        cy.wait(2000);
+        cy.get('[id*="ITIN_Input"]').click().type(nifAleatorioEmpresa);
+        cy.get('[id*="CreateNewEntityBtn"]').should('be.visible').click();
+        cy.wait(4000);
+        // ****** 2 - COMEÇA A PREENCHER TODOS OS FORMULÁRIOS
+        cy.get('[id*="Input_Name"]').type('Automação '+ companyName);
+        cy.get('[id*="CodigoPostalInput"]').eq(0).type('1200');
+              cy.wait(500);
+              cy.get('[id*="SubCodigoPostalInput"]').eq(0).type('785');
+              cy.wait(2000);
+              cy.get('[class*="btn btn-primary custom-btn"]').click();
+              cy.get('[id*="Input_CPC_ExpirationDate"]').type("2026-05-01", { force: true });
+              cy.get('span.upload-file').eq(0).find('input[type="file"]').attachFile('imagemteste.jpg');
+              cy.get('[id*="Input_RCBE_ExpirationDate"]').type("2026-05-01", { force: true });
+              cy.get('span.upload-file').eq(1).find('input[type="file"]').attachFile('imagemteste.jpg');
+              cy.get('[class*="btn btn-primary custom-btn"]').eq(1).click();
+              cy.get('[class*="btn custom-btn"]').eq(0).click();
+cy.get('[class*="btn custom-btn"]').eq(1).click();
+//Representatives - Adicionar representantes.
+cy.get('[class*="btn btn-primary custom-btn"]').eq(4).click();
+cy.get('[id*="Input_ITIN"]').type(nifAleatorioParticular);
+cy.get('[id*="AddBtn"]').click();
     });
 }); 

@@ -14,12 +14,12 @@ function gerarNIFValido() {
   let digitoControle = resto < 2 ? 0 : 11 - resto;  // Condicional otimizada
   return primeiros8 + digitoControle;
 }
-describe('Criacao completa de um contrato. Iniciando pela criação da entidade e posteriormente proposal', () => {
+describe('Criacao completa de um contrato - Particular - Crédito Pessoal.', () => {
     let nifAleatorio = gerarNIFValido();
     const firstName = faker.name.firstName(); 
           const lastName = faker.name.lastName();
           let currentPageUrl; // Para capturar e reutilizar a URL
-    it('Inicia a criação de uma entidade no Onboarding até o fim; É direcionado até a pagina de proposal, e finaliza até ter o registro do contrato.', () => {
+    it('Cria uma entidade no Onboarding e uma proposal no Origination, até ter o numero do contrato.', () => {
         // ****** 1 - ENTRA NO ONBOARDING E CRIA UMA NOVA ENTIDADE
         cy.log('NIF Gerado: ' + nifAleatorio);
         cy.visit('https://acs-dev.outsystemscloud.com/OnBoarding_R/');
@@ -59,7 +59,7 @@ describe('Criacao completa de um contrato. Iniciando pela criação da entidade 
               cy.get('[id*="Input_PhoneWork"]').type('216321456');
               // Primeiro save & continue
               cy.get('[class*="btn btn-primary custom-btn"]').eq(0).click();
-              cy.wait(1000); 
+              cy.wait(3000); 
               // ****** 4 - COMEÇA A PREENCHER A SEGUNDA SESSÃO (ADDRESS)
               // Checkbox Morada fiscal
               cy.get('[id*="Checkbox1"]').click();
@@ -107,7 +107,7 @@ cy.get('[class*="btn custom-btn"]').eq(0).click();
 cy.get('[class*="btn custom-btn"]').eq(1).click();
 cy.wait(3000);
 // ****** 7 - ACESSA ORIGINATIONS PARA CRIAR A PROPOSTA COM O MESMO NIF ANTERIOR.
-  cy.visit('https://acs-dev.outsystemscloud.com/Originations_R/Login')
+  cy.visit('https://acs-dev.outsystemscloud.com/Origination_R/Login')
                   cy.get('#Input_UsernameVal').should('be.visible');
         cy.get('#Input_UsernameVal').type('warruda@PT');
         cy.get('#Input_PasswordVal').type('Ablewise.2024!');
@@ -167,16 +167,15 @@ cy.get('span.upload-file').eq(0).find('input[type="file"]').attachFile('imagemte
 // AVAL
 cy.get('span.upload-file').eq(1).find('input[type="file"]').attachFile('imagemteste.jpg');
 cy.get('[class*="btn btn-primary custom-btn"]').eq(4).click();
-cy.wait(3000);
+cy.wait(5000);
 // ****** 13 - PASSA PELO DECISION
 // Decision Credito pessoal
 cy.get('[id*="RadioButton1-input"]').eq(0).click();
-// Não aceito receber novidades
-cy.get('[id*="Checkbox1"]').click();
  // Decision next button
  cy.get('[id*="NextStepBtn"]').click();
  // ****** 14 - PASSA PELO Client Deal
  //adiciona seguro 0 External 1 Internal
+ cy.wait(3000);
  cy.get('select[class*="dropdown-display dropdown custom-input"]').as('dropdown');
  cy.get('@dropdown').select('External');
  cy.get('span.upload-file').find('input[type="file"]').attachFile('imagemteste.jpg');
@@ -188,7 +187,7 @@ cy.get('[id*="Checkbox1"]').click();
  cy.get('[class*="btn btn-primary custom-btn"]').eq(6).click();
  // save & continue 
  // ****** 16 - verifico status finished
- cy.wait(5000);
+ cy.wait(10000);
  cy.get('span[data-expression]')
  .filter(':contains("Finished")')
  .should('have.text', 'Finished');
