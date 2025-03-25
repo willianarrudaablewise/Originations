@@ -28,14 +28,14 @@ function gerarNIFParticular() {
   let digitoControle = resto < 2 ? 0 : 11 - resto;  // Condicional otimizada
   return primeiros8 + digitoControle;
 }
-describe('Criacao completa de um contrato. Iniciando pela criação da entidade e posteriormente proposal', () => {
+describe('Fluxo entidade Business', () => {
     let nifAleatorioEmpresa = gerarNIFEmpresa();
     let nifAleatorioParticular = gerarNIFParticular();
     const companyName = faker.company.name(); 
     const firstName = faker.name.firstName(); 
     const lastName = faker.name.lastName();
           let currentPageUrl; // Para capturar e reutilizar a URL
-    it('Faz o fluxo de uma entidade particular como representante, depois inicia uma entidade com NIF empresarial.', () => {
+    it('Faz o fluxo de uma entidade particular como representante, depois inicia a criação de uma entidade com NIF empresarial.', () => {
         // ****** 1 - ENTRA NO ONBOARDING E CRIA UMA NOVA ENTIDADE
         cy.log('NIF Empresa: ' + nifAleatorioEmpresa);
         cy.log('NIF Particular: ' + nifAleatorioParticular);
