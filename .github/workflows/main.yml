@@ -1,6 +1,8 @@
 name: Cypress Tests
 
 on:
+  schedule:
+    - cron: '0 8 * * *'  # Executa todos os dias às 08:00 UTC (09:00 em Portugal)
   push:
     branches:
       - main
@@ -27,15 +29,15 @@ jobs:
         with:
           command: npm run ui-regression
 
-      - name: Get current date
+      - name: Get current DATE
         id: date
-        run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+        run: echo "DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: Cypress-Origination-Report-${{ env.date }}
+          name: Cypress-Origination-Report-${{ steps.date.outputs.date }}
           path: cypress/reports/html
           retention-days: 7
 
