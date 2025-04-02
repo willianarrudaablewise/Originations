@@ -28,7 +28,7 @@ function gerarNIFParticular() {
   let digitoControle = resto < 2 ? 0 : 11 - resto;  // Condicional otimizada
   return primeiros8 + digitoControle;
 }
-describe('Fluxo entidade Business', () => {
+describe('Cria uma entidade valida - Business.', () => {
     let nifAleatorioEmpresa = gerarNIFEmpresa();
     let nifAleatorioParticular = gerarNIFParticular();
     const companyName = faker.company.name(); 

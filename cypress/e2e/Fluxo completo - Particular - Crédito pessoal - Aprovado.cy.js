@@ -19,7 +19,7 @@ describe('Cria um contrato - Particular - Crédito Pessoal - Aceite.', () => {
     const firstName = faker.name.firstName(); 
           const lastName = faker.name.lastName();
           let currentPageUrl; // Para capturar e reutilizar a URL
-    it('Cria uma entidade no Onboarding e uma proposal no Origination utilizando o mesmo NIF. O contrato deve ser registado e a proposta deve ser finalizada.', () => {
+    it('Cria um contrato - Particular - Crédito Pessoal - Aceite.', () => {
         // ****** 1 - ENTRA NO ONBOARDING E CRIA UMA NOVA ENTIDADE
         cy.log('NIF Gerado: ' + nifAleatorio);
         cy.visit('https://acs-dev.outsystemscloud.com/OnBoarding_R/');

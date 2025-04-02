@@ -14,7 +14,7 @@ function gerarNIFValido() {
   let digitoControle = resto < 2 ? 0 : 11 - resto;  // Condicional otimizada
   return primeiros8 + digitoControle;
 }
-describe('Criação completa de um contrato para ser recusado pela rulebook no decision', () => {
+describe('Cria um contrato - Particular - Crédito Pessoal - Recusado(Decision).', () => {
     let nifAleatorio = gerarNIFValido();
     const firstName = faker.name.firstName(); 
           const lastName = faker.name.lastName();
