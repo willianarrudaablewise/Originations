@@ -1,0 +1,19 @@
+{
+  "name": "cypress-artifact-demo",
+  "version": "1.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "ui-regression": "cypress run --browser chrome --spec 'cypress/e2e/**/*.cy.{js,ts}'"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@faker-js/faker": "^9.3.0",
+    "cypress": "^13.17.0",
+    "cypress-file-upload": "^5.0.8",
+    "cypress-mochawesome-reporter": "^3.8.2",
+    "cypress-xpath": "^2.0.1",
+    "glob": "^11.0.0"
+  }
+}
