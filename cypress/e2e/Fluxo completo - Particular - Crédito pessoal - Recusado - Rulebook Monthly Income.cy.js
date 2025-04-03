@@ -161,6 +161,7 @@ cy.get('[id*="OtherExpensesInput"]').clear().type("400");
      // ****** 11 - CLICA NO BOTÃO NEXT POIS OS FICHEIROS JA ESTÃO PREENCHIDOS
 // Checklist save
 cy.get('[class*="btn btn-primary custom-btn"]').eq(1).click(); 
+cy.wait(3000);
 // ****** 12 - FAZ O UPLOAD DO FICHEIRO SALARY
 // Salary receipt 
 cy.get('span.upload-file').eq(0).find('input[type="file"]').attachFile('imagemteste.jpg');
@@ -169,9 +170,6 @@ cy.get('span.upload-file').eq(1).find('input[type="file"]').attachFile('imagemte
 cy.get('[class*="btn btn-primary custom-btn"]').eq(4).click();
 cy.wait(5000);
 // ****** 13 - PASSA PELO DECISION
-// Decision Credito pessoal
-cy.get('[id*="RadioButton1-input"]').eq(0).click();
- // Decision next button
  cy.get('span[data-expression]')
  .filter(':contains("RECUSADA")')
  .should('have.text', 'RECUSADA');
