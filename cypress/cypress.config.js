@@ -25,8 +25,10 @@ module.exports = defineConfig({
   e2e: {
     retries: 1, // Tenta novamente até 2 vezes se falhar
     setupNodeEvents(on, config) {
-      mochawesome(on); // Configurar o Mochawesome
+      mochawesome(on, {
+        quiet: true, // 🔹 Evita logs detalhados
+      });
       return config;
-    },
+    }
   },
 });
