@@ -27,7 +27,8 @@ module.exports = defineConfig({
     retries: 1, // Tenta novamente até 2 vezes se falhar
     setupNodeEvents(on, config) {
       mochawesome(on, {
-        quiet: true, // 🔹 Evita logs detalhados
+        quiet: true,
+        code: false,
       });
       return config;
     }
