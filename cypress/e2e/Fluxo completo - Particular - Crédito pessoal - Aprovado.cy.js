@@ -167,6 +167,7 @@ cy.wait(3000);
 cy.get('span.upload-file').eq(0).find('input[type="file"]').attachFile('imagemteste.jpg');
 // AVAL
 cy.get('span.upload-file').eq(1).find('input[type="file"]').attachFile('imagemteste.jpg');
+cy.wait(3000);
 cy.get('[class*="btn btn-primary custom-btn"]').eq(4).click();
 cy.wait(5000);
 // ****** 13 - PASSA PELO DECISION
