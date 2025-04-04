@@ -16,6 +16,7 @@ module.exports = defineConfig({
     html: true,
     json: true,
     quiet: true,
+    code: false,
   },
   screenshotsFolder: "cypress/reports/screenshots", // Diretório das capturas de tela
   videosFolder: "cypress/reports/videos", // Diretório dos vídeos
