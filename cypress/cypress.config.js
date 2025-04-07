@@ -15,8 +15,6 @@ module.exports = defineConfig({
     overwrite: true,
     html: true,
     json: true,
-    quiet: true,
-    code: false,
   },
   screenshotsFolder: "cypress/reports/screenshots", // Diretório das capturas de tela
   videosFolder: "cypress/reports/videos", // Diretório dos vídeos
@@ -27,8 +25,6 @@ module.exports = defineConfig({
     retries: 1, // Tenta novamente até 2 vezes se falhar
     setupNodeEvents(on, config) {
       mochawesome(on, {
-        quiet: true,
-        code: false,
       });
       return config;
     }
