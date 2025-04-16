@@ -22,7 +22,6 @@ module.exports = defineConfig({
   viewportWidth: 1280,
   viewportHeight: 720,
   e2e: {
-    retries: 0, // Tenta novamente até 2 vezes se falhar
     setupNodeEvents(on, config) {
       mochawesome(on, {
       });

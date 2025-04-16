@@ -27,8 +27,8 @@ describe('Cria um contrato - Particular - Crédito Pessoal - Aceite.', () => {
         cy.get('#Input_UsernameVal').type('warruda@PT');
         cy.get('#Input_PasswordVal').type('Ablewise.2024!');
         cy.get('#b6-Button').click();
+        cy.wait(6000);
         cy.get('[class*="link-container"]').eq(1).click();
-        cy.wait(2000);
         cy.get('[id*="ITIN_Input"]').click().type(nifAleatorio);
         cy.get('[id*="CreateNewEntityBtn"]').should('be.visible').click();
         cy.wait(4000);
@@ -57,6 +57,7 @@ describe('Cria um contrato - Particular - Crédito Pessoal - Aceite.', () => {
               cy.get('[id*="Input_PhoneNumber"]').type('914980545');
               cy.get('[id*="Input_Id_PhoneHouse"]').type('210340160');
               cy.get('[id*="Input_PhoneWork"]').type('216321456');
+              cy.wait(1000); 
               // Primeiro save & continue
               cy.get('[class*="btn btn-primary custom-btn"]').eq(0).click();
               cy.wait(3000); 
@@ -112,9 +113,10 @@ cy.wait(3000);
         cy.get('#Input_UsernameVal').type('warruda@PT');
         cy.get('#Input_PasswordVal').type('Ablewise.2024!');
         cy.get('#b6-Button').click();
-         // expande e clica no menu new proposal
-        cy.get('.menu-icon').should('be.visible');
-        cy.get('.menu-icon').click();
+        cy.wait(7000);
+        cy.get('.menu-icon').eq(0).should('be.visible');
+        cy.get('.menu-icon').eq(0).click();
+        cy.get('[class*="link-container"]').eq(1).click();
   cy.get('.margin-top-m:nth-child(2)').click();
   // ****** 8 - ADICIONA O MESMO NIF UTILIZADO NA ENTIDADE E COMEÇA UMA NOVA PROPOSTA
   cy.get('[id*="ITIN_Input"][data-input]').type(nifAleatorio);
@@ -195,5 +197,13 @@ cy.get('[id*="RadioButton1-input"]').eq(0).click();
  cy.get('span[data-expression]')
  .filter(':contains("Finished")')
  .should('have.text', 'Finished');
+ cy.get('[class*="link-container"]').eq(2).click();
+ cy.get('[id*="SearchTermInput"]').click();
+ cy.get('[id*="SearchTermInput"]').type(nifAleatorio);
+ cy.get('[id*="FilterBtn"]').click();
+ cy.get('[id*="SearchBtn"]').click();
+ cy.wait(3000);
+ cy.get('td[data-header="Estado"] span[data-expression]')
+ .should('contain.text', 'Finished');
     });
 }); 
