@@ -35,18 +35,18 @@ describe('Cria um contrato - Particular - Crédito Pessoal - Aceite.', () => {
         // ****** 2 - COMEÇA A PREENCHER TODOS OS FORMULÁRIOS
         // ****** 3 - COMEÇA A PREENCHER A PRIMEIRA SESSÃO (IDENTIFICATION)
               cy.get('select[id*="Dropdown_TitleId"]').as('dropdown');
-        cy.get('@dropdown').select('PROFESSORA');
-      // Valores: DOUTOR DOUTORA PROFESSOR PROFESSORA SENHOR SENHORA
+        cy.get('@dropdown').select('Professor(a)');
+      // Valores: Professor(a), Senhor(a), Doutor(a)
       cy.get('[id*="Input_Name"]').type('Automação '+ firstName);
       cy.get('[id*="Input_LastName"]').type(lastName);
-      cy.get('select[id*="Dropdown_Gender"]').select('Male');
-      //  Valores: 0 Female 1 Male
+      cy.get('select[id*="Dropdown_Gender"]').select('Masculino');
+      //  Valores: 0 Feminino 1 Masculino
       cy.get('select[id*="Dropdown_CivilStatus"]').as('dropdown');
       cy.get('@dropdown').select('Solteiro');
       //  Valores: 0 Casado 1 Solteiro
       cy.get('[id*="Input_BirthDate"]').type('1996-05-20', { force: true });
       cy.get('select[id*="Dropdown_Nationality"]').as('dropdown');
-      cy.get('@dropdown').select('Portugal');
+      cy.get('@dropdown').select('Portuguesa');
       cy.get('[id*="Input_NaturalnessLocal"]').type('Lisboa');
       cy.get('.custom-upload input[type="file"]').attachFile('imagemteste.jpg');
               cy.get('[id*="Input_IdentificationNumber"]').type(nifAleatorio);
@@ -134,16 +134,16 @@ cy.get('[id*="StartNewProposalBtn"]').click();
 cy.wait(2000);
  // ****** 10 - PREENCHE FINANCIAL INFORMATION DA PROPOSAL
 cy.get('select[id*="HouseStatusDropdown"]').as('dropdown');
-cy.get('@dropdown').select('PROPRIA COM ENCARGOS');
-// Valores: 0 ARRENDADA, 1 EMPRESA, 2 Neutro, 3 Outro, 4 PROPRIA COM ENCARGOS, 5 Propria sem encargos, 6 Sem resposta, 7 VIVE COM FAMILIARES
+cy.get('@dropdown').select('Própria com encargos');
+// Valores: 0 Arrendada, 1 Empresa, 2 Neutro, 3 Outro, 4 Própria com encargos, 5 Propria sem encargos, 6 Sem resposta, 7 Vive com familiares
 cy.get('[id*="AddressDateInput"]').type('2025-03-25', { force: true });
 //Dados profissinais
 cy.get('select[id*="ProfessionDropdown"]').as('dropdown');
 cy.get('@dropdown').select('Advogado');
-// Valores: 0 Advogado, 1 AGENTE PSP / GNR, 2 Agricultor proprietario, 3 AGRICULTOR RENDEIRO, 4 ARQUITETO / CONSULTOR, 5 Artista, 6 Assistente Social, 7 AUXILIAR DE AÇÃO MÉDICA. ETC...
+// Valores: 0 Advogado, 1 Agente PSP / GNR, 2 Agricultor Proprietário, 3 Agricultor Rendeiro, 4 Arquiteto / Consultor, 5 Artista, 6 Assistente Social, 7 Auxiliar de Ação Médica. Etc...
 cy.get('select[id*="ContractTypeDropdown"]').as('dropdown');
-cy.get('@dropdown').select('EFECTIVO');
-// Valores: 0 A COMISSAO, 1 A PRAZO, 2 CONTA PROPRIA, 3 EFECTIVO, 4 REFORMADO/DOMESTICA, 5 TEMPORARIO EVENTUAL
+cy.get('@dropdown').select('Efectivo');
+// Valores: 0 A Comissão, 1 A Prazo, 2 Conta Própria, 3 Efectivo, 4 Reformado/Doméstica, 5 Temporário Eventual
 cy.get('[id*="CompanyNameInput"]').type("Google");
 cy.get('[id*="CompanyAddressInput"]').type("Google");
 cy.get('[id*="DateActualBusinessInput"]').type("2024-05-01", { force: true });

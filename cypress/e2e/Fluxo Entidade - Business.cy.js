@@ -53,18 +53,15 @@ describe('Cria uma entidade valida - Business.', () => {
         // ****** 2 - COMEÇA A PREENCHER TODOS OS FORMULÁRIOS
         // ****** 3 - COMEÇA A PREENCHER A PRIMEIRA SESSÃO (IDENTIFICATION)
               cy.get('select[id*="Dropdown_TitleId"]').as('dropdown');
-        cy.get('@dropdown').select('PROFESSORA');
-      // Valores: DOUTOR DOUTORA PROFESSOR PROFESSORA SENHOR SENHORA
+        cy.get('@dropdown').select('Professor(a)');
       cy.get('[id*="Input_Name"]').type('Automação '+ firstName);
       cy.get('[id*="Input_LastName"]').type(lastName);
-      cy.get('select[id*="Dropdown_Gender"]').select('Male');
-      //  Valores: 0 Female 1 Male
+      cy.get('select[id*="Dropdown_Gender"]').select('Masculino');
       cy.get('select[id*="Dropdown_CivilStatus"]').as('dropdown');
       cy.get('@dropdown').select('Solteiro');
-      //  Valores: 0 Casado 1 Solteiro
       cy.get('[id*="Input_BirthDate"]').type('1996-05-20', { force: true });
       cy.get('select[id*="Dropdown_Nationality"]').as('dropdown');
-      cy.get('@dropdown').select('Portugal');
+      cy.get('@dropdown').select('Portuguesa');
       cy.get('[id*="Input_NaturalnessLocal"]').type('Lisboa');
       cy.get('.custom-upload input[type="file"]').attachFile('imagemteste.jpg');
               cy.get('[id*="Input_IdentificationNumber"]').type(nifAleatorioParticular);
