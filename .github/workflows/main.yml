@@ -18,22 +18,23 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18.x'  # Usando versão LTS estável
+          node-version: '18.x'
           cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Run Cypress tests
-        uses: cypress-io/github-action@v6
-        with:
-          command: npm run ui-regression
-
       - name: Get current DATE
         id: date
         run: echo "DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
 
-      - name: Upload artifact
+      # ORIGINATION
+      - name: Run Cypress tests - Origination
+        run: |
+          rm -rf cypress/reports/html
+          npx cypress run --spec "cypress/e2e/!(Collections*)*.cy.js"
+
+      - name: Upload artifact - Origination
         uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -41,8 +42,16 @@ jobs:
           path: cypress/reports/html
           retention-days: 7
 
-      - name: Deploy Mochawesome report to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      # COLLECTIONS
+      - name: Run Cypress tests - Collections only
+        run: |
+          rm -rf cypress/reports/html
+          npx cypress run --spec "cypress/e2e/Collections*.cy.js"
+
+      - name: Upload artifact - Collections
+        uses: actions/upload-artifact@v4
+        if: always()
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
+          name: Cypress-Collections-Report-${{ env.DATE }}
+          path: cypress/reports/html
+          retention-days: 7
